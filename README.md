@@ -1,0 +1,2 @@
+# hospital
+my training project
