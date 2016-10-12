@@ -1,0 +1,14 @@
+.settings/
+webapp/.project
+webapp/.classpath
+services/.project
+services/.classpath
+datamodel/.project
+datamodel/.classpath
+dao-impl-xml/.classpath
+dao-impl-xml/.project
+dao-impl-db/.project
+dao-impl-db/.classpath
+dao-api/.project
+dao-api/.classpath
+.project
