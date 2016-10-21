@@ -2,10 +2,12 @@ package com.vvs.training.hospital.daodb.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.vvs.training.hospital.daodb.DrugDao;
 import com.vvs.training.hospital.datamodel.Drug;
 
-
+@Repository
 public class DrugDaoImpl implements DrugDao {
 
 	@Override

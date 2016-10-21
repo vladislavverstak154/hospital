@@ -13,8 +13,13 @@
 	<dependencies>
 
 		<dependency>
-				<groupId>com.vvs.training</groupId>
-				<artifactId>datamodel</artifactId>
+			<groupId>com.vvs.training</groupId>
+			<artifactId>dao-impl-db</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
 		</dependency>
 
 
