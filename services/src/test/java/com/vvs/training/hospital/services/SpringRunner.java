@@ -14,7 +14,7 @@ public class SpringRunner {
             System.out.println(beanName);
         }
 
-        BookService bookServiceBean = springContext.getBean(BookService.class);
+        DoctorService doctorServiceBean = springContext.getBean(DoctorService.class);
         System.out.println("BookService exists:" + (bookServiceBean != null ? true : false));
 
         System.out.println("BookService.dao exists:" + (bookServiceBean.isDaoExist() ? true : false));
