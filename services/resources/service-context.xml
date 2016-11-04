@@ -19,7 +19,8 @@
 	<context:component-scan base-package="com.vvs.training.hospital.daodb.impl" />
 	<context:component-scan base-package="com.vvs.training.hospital.services.impl" />
 
-		<context:property-placeholder
+
+	<context:property-placeholder
 		ignore-unresolvable="true" location="classpath:db.properties" />
 
 
@@ -47,7 +48,6 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
 
 
 </beans>

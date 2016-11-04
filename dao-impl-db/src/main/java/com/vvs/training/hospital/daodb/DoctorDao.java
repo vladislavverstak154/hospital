@@ -5,7 +5,7 @@ import java.util.List;
 import com.vvs.training.hospital.datamodel.Doctor;
 
 
-public interface DoctorDao {
+public interface DoctorDao extends GenericDao<Doctor> {
 	Doctor get(Long id);
 	void insert(Doctor entity);
 	void update(Doctor entity);
