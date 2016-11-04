@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.vvs.training.hospital.daodb.ProcedureDao;
 import com.vvs.training.hospital.datamodel.Procedure;
 
-@Repository
+
 public class ProcedureDaoImpl<T> implements ProcedureDao {
 
-    @Inject
+   
     private JdbcTemplate jdbcTemplate;
 
     

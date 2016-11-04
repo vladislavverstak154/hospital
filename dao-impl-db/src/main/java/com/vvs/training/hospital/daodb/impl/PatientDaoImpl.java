@@ -9,7 +9,7 @@ import com.vvs.training.hospital.datamodel.Patient;
 
 @Repository
 public class PatientDaoImpl implements PatientDao {
-
+	
 	@Override
 	public Patient get(Long id) {
 		// TODO Auto-generated method stub

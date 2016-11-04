@@ -17,8 +17,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 	
     public GenericDaoImpl() {
         Type t = this.getClass();
-        ParameterizedType pt = (ParameterizedType) t;
-        type = (Class) pt.getActualTypeArguments()[0];}
+        this.type = (Class)t;}
 	
 	@Inject
     private JdbcTemplate jdbcTemplate;

@@ -1,4 +1,4 @@
-package com.vvs.training.daodb.util;
+package com.vvs.training.hospital.daodb.util;
 
 import java.sql.Connection;
 import java.sql.SQLException;

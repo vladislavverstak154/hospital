@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import com.vvs.training.hospital.daodb.DoctorDao;
 import com.vvs.training.hospital.datamodel.Doctor;
 import com.vvs.training.hospital.services.DoctorService;
-@Service
+
 public class DoctorServiceImpl implements DoctorService {
 	
-	 @Inject
-	 private DoctorDao doctorDao;
+	@Inject
+	private DoctorDao doctorDao;
 
 	@Override
 	public void saveAll(List<Doctor> doctors) {
