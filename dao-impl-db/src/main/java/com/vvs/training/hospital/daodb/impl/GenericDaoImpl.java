@@ -1,57 +1,92 @@
 package com.vvs.training.hospital.daodb.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+
+import org.springframework.core.GenericTypeResolver;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.vvs.training.hospital.daodb.GenericDao;
+import com.vvs.training.hospital.daodb.sql.SqlProcessor;
 import com.vvs.training.hospital.datamodel.AbstractModel;
 
 public abstract class GenericDaoImpl<T extends AbstractModel> implements GenericDao<T> {
-	
-	private Class<T> type;
-	
-    public GenericDaoImpl() {
-        Type t = this.getClass();
-        this.type = (Class)t;}
-	
+
+	protected Class<T> getClazz() {
+		return (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), GenericDaoImpl.class);
+	}
+
 	@Inject
-    private JdbcTemplate jdbcTemplate;
-	
-	@SuppressWarnings("unchecked")
-	@Override
+	private JdbcTemplate jdbcTemplate;
+
 	public T get(Long id) {
-		String sql=String.format("SELECT * FROM %1$ WHERE ID =%2$",type.getSimpleName().toUpperCase(),id);
-		return (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<T>(this.type));
+		String sql = String.format("SELECT * FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
+		return (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
-
-	@Override
-	public void insert(T entity) {
-		// TODO Auto-generated method stub
+	
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate=new NamedParameterJdbcTemplate(this.jdbcTemplate);
+	public void inser(T entity){
 		
 	}
-
+	
 	@Override
-	public void update(T entity) {
-		// TODO Auto-generated method stub
+	public void insert(T entity) throws IllegalArgumentException, IllegalAccessException{
+		final SqlProcessor<T> sqlProcessor=new SqlProcessor<T>(entity);
+		final String INSERT_SQL=sqlProcessor.insertSql();
 		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(
+		    new PreparedStatementCreator() {
+		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+		            PreparedStatement ps = connection.prepareStatement(INSERT_SQL, new String[] {"id"});
+		            try {
+		        		ps=sqlProcessor.setArgs(ps);
+					} catch (Exception e) {}
+		            return ps;
+		        }
+		    },
+		    keyHolder);
+		Long i=keyHolder.getKey().longValue();
+		entity.setId(i);
+	};
+	
+	@Override
+	public void update(T entity) throws Exception{
+		final SqlProcessor<T> sqlProcessor=new SqlProcessor<T>(entity);
+		final String INSERT_SQL=sqlProcessor.updateSql();
+		jdbcTemplate.update(
+		    new PreparedStatementCreator() {
+		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+		            PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
+		            try {
+		        		ps=sqlProcessor.setArgs(ps);
+					} catch (Exception e) {System.out.println("SqlProcessor troubles");}
+		            return ps;
+		        }
+		    });
+	}
+		
+	@Override
+	public void delete(Long id) {
+		String sql = String.format("DELETE * FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
+		jdbcTemplate.execute(sql);
 	}
 
-	@Override
-	public void delete(T entity) {
-		// TODO Auto-generated method stub
 		
-	}
-
 	@Override
 	public List<T> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql="SELECT * FROM "+this.getClazz().getSimpleName();
+		return (List<T>)jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
-
 
 }

@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.vvs.training.hospital.datamodel.Patient;
 
-public interface PatientSevice {
+public interface PatientService {
 
+	Patient get(Long id);
+	
 	void saveAll(List<Patient> patients);
 
 	void save(Patient patient);

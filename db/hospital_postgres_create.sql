@@ -1,11 +1,11 @@
 CREATE TABLE "patient" (
-	"id" serial(1024) NOT NULL,
-	"first_name" character varying(256) NOT NULL,
-	"second_name" character varying(256) NOT NULL,
-	"last_name" character varying(256) NOT NULL,
-	"date_arrive" DATE(10) NOT NULL,
-	"date_depart" DATE(10) NOT NULL,
-	"doctor_id" bigint(512) NOT NULL,
+	"id" serial NOT NULL,
+	"first_name" character varying NOT NULL,
+	"second_name" character varying NOT NULL,
+	"last_name" character varying NOT NULL,
+	"date_arrive" DATE NOT NULL,
+	"date_depart" DATE NOT NULL,
+	"doctor_id" bigint NOT NULL,
 	CONSTRAINT patient_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -14,10 +14,10 @@ CREATE TABLE "patient" (
 
 
 CREATE TABLE "doctor" (
-	"id" serial(512) NOT NULL,
-	"first_name" serial(256) NOT NULL,
-	"second_name" serial(256) NOT NULL,
-	"last_name" serial(256) NOT NULL,
+	"id" serial NOT NULL,
+	"first_name" character varying NOT NULL,
+	"second_name" character varying NOT NULL,
+	"last_name" character varying NOT NULL,
 	CONSTRAINT doctor_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -26,10 +26,10 @@ CREATE TABLE "doctor" (
 
 
 CREATE TABLE "nurse" (
-	"id" serial(512) NOT NULL,
-	"first_name" character varying(256) NOT NULL,
-	"second_name" character varying(256) NOT NULL,
-	"last_name" character varying(256) NOT NULL,
+	"id" serial NOT NULL,
+	"first_name" character varying NOT NULL,
+	"second_name" character varying NOT NULL,
+	"last_name" character varying NOT NULL,
 	CONSTRAINT nurse_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -38,10 +38,10 @@ CREATE TABLE "nurse" (
 
 
 CREATE TABLE "cure" (
-	"id" serial(102400) NOT NULL,
-	"date_set" DATE(10) NOT NULL,
-	"doctor_id" bigint(102400) NOT NULL,
-	"patient_id" bigint(1024) NOT NULL,
+	"id" serial NOT NULL,
+	"date_set" DATE NOT NULL,
+	"doctor_id" bigint NOT NULL,
+	"patient_id" bigint NOT NULL,
 	CONSTRAINT cure_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -50,11 +50,11 @@ CREATE TABLE "cure" (
 
 
 CREATE TABLE "operation" (
-	"id" serial(102400) NOT NULL,
-	"operation_title" character varying(2048) NOT NULL,
-	"date_perform" DATE(10) NOT NULL,
-	"doctor_id" bigint(512) NOT NULL,
-	"cure_id" bigint(102400) NOT NULL,
+	"id" serial NOT NULL,
+	"operation_title" character varying NOT NULL,
+	"date_perform" DATE NOT NULL,
+	"doctor_id" bigint NOT NULL,
+	"cure_id" bigint NOT NULL,
 	CONSTRAINT operation_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -63,12 +63,12 @@ CREATE TABLE "operation" (
 
 
 CREATE TABLE "procedure" (
-	"id" serial(102400) NOT NULL,
-	"procedure_name" character varying(2048) NOT NULL,
-	"doctor_id" bigint(102400) NOT NULL,
-	"nurse_id" bigint(102400) NOT NULL,
-	"cure_id" bigint(102400) NOT NULL,
-	"date_end" DATE(10) NOT NULL,
+	"id" serial NOT NULL,
+	"procedure_name" character varying NOT NULL,
+	"doctor_id" bigint NOT NULL,
+	"nurse_id" bigint NOT NULL,
+	"cure_id" bigint NOT NULL,
+	"date_end" DATE NOT NULL,
 	CONSTRAINT procedure_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -77,11 +77,11 @@ CREATE TABLE "procedure" (
 
 
 CREATE TABLE "drug" (
-	"id" serial(102400) NOT NULL,
-	"recipe" character varying(2048) NOT NULL,
-	"date_end" DATE(10) NOT NULL,
-	"doctor_id" bigint(512) NOT NULL,
-	"nurse_id" bigint(512) NOT NULL,
+	"id" serial NOT NULL,
+	"recipe" character varying NOT NULL,
+	"date_end" DATE NOT NULL,
+	"doctor_id" bigint NOT NULL,
+	"nurse_id" bigint NOT NULL,
 	CONSTRAINT drug_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

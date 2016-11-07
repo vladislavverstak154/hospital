@@ -1,27 +1,43 @@
 package com.vvs.training.hospital.services;
 
-import java.util.List;
+import javax.inject.Inject;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vvs.training.hospital.datamodel.Patient;
 
-public class PatientServiceImpl implements PatientSevice {
+import org.junit.Assert;
 
-	@Override
-	public void saveAll(List<Patient> patients) {
-		// TODO Auto-generated method stub
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:service-context.xml")
+public class PatientServiceImpl {
 
-	}
+    @Inject
+    private PatientService patientService;
 
-	@Override
-	public void save(Patient patient) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean isDaoExist() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    /*
+     * @BeforeClass public static void prepareTestData() {
+     * System.out.println("prepareTestData"); }
+     * 
+     * @AfterClass public static void deleteTestData() {
+     * System.out.println("deleteTestData"); }
+     * 
+     * @Before public void prepareMethodData() {
+     * System.out.println("prepareMethodData"); }
+     * 
+     * @After public void deleteMethodData() {
+     * System.out.println("deleteMethodData"); }
+     */
+    
+    @Test
+    
+    public void getByIdTest() {
+    	Patient patient=patientService.get(1l);  
+    	Assert.assertFalse(patient.getFirstName().isEmpty());
+    	System.out.println(patient.getFirstName());
+    }
 
 }

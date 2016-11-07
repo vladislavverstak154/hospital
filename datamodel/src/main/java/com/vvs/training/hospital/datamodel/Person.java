@@ -1,9 +1,16 @@
 package com.vvs.training.hospital.datamodel;
 
+import com.vvs.training.hospital.annotations.Column;
+
 public class Person extends AbstractModel {
+	@Column(datatype = "setString", name = "first_name")
 	private String firstName;
+	@Column(datatype = "setString", name = "second_name")
 	private String secondName;
+	@Column(datatype = "setString", name = "last_name")
 	private String lastName;
+	
+	
 	public String getFirstName() {
 		return firstName;
 	}

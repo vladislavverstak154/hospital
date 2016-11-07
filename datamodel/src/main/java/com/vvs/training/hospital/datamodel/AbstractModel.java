@@ -1,7 +1,9 @@
 package com.vvs.training.hospital.datamodel;
 
-public class AbstractModel {
+import com.vvs.training.hospital.annotations.Id;
 
+public class AbstractModel {
+	@Id
     private Long id;
 
     public Long getId() {

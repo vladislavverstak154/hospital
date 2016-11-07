@@ -1,6 +1,5 @@
 package com.vvs.training.hospital.services;
 
-import java.awt.print.Book;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -8,11 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.vvs.training.hospital.datamodel.Doctor;
 
 public interface DoctorService {
-	 @Transactional
-	    void saveAll(List<Doctor> doctors);
+	 
+	@Transactional
+	    void saveAll(List<Doctor> doctors) throws Exception;
 
-	    Long save(Doctor doctor);
+	    void save(Doctor doctor) throws Exception;
 
 	    Doctor get(Long id);
+
+		List<Doctor> getAll();
 	
 }
