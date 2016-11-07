@@ -1,8 +1,12 @@
 package com.vvs.training.hospital.datamodel;
 
-import java.sql.Date;
+import java.util.Date;
+
+import com.vvs.training.hospital.annotations.Column;
 
 public class Cure extends AbstractModel {
+	
+	@Column(datatype = "setDate", name = "date_set")
 	private Date dateSet;
 
 	public Date getDateSet() {

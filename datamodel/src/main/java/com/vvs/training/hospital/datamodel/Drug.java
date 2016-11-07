@@ -1,10 +1,14 @@
 package com.vvs.training.hospital.datamodel;
 
-import java.sql.Date;
+import java.util.Date;
+
+import com.vvs.training.hospital.annotations.Column;
 
 public class Drug extends AbstractModel {
+	@Column(datatype = "setString", name = "recipe")
 	private String recipe;
-	private Date endDate;
+	@Column(datatype = "setDate", name = "date_end")
+	private Date dateEnd;
 	public String getRecipe() {
 		return recipe;
 	}
@@ -12,10 +16,10 @@ public class Drug extends AbstractModel {
 		this.recipe = recipe;
 	}
 	public Date getEndDate() {
-		return endDate;
+		return dateEnd;
 	}
 	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+		this.dateEnd = dateEnd;
 	}
 	
 	
