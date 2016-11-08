@@ -198,7 +198,7 @@ public class DoctorServiceTest {
 	@Test
 	public void deleteTest() {
 		doctorService.delete(this.id);
-		this.jdbcTemplate.queryForObject("SELECT FROM DOCTOR WHERE id=" + this.id,new BeanPropertyRowMapper<Doctor>(Doctor.class)));
+		this.jdbcTemplate.queryForObject("SELECT FROM DOCTOR WHERE id=" + this.id,new BeanPropertyRowMapper<Doctor>(Doctor.class));
 	}
 	
 	
