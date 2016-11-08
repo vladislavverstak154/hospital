@@ -9,5 +9,5 @@ import com.vvs.training.hospital.datamodel.Doctor;
 @Repository
 public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements DoctorDao{
 
-		
+			
 }

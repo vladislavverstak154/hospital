@@ -11,7 +11,6 @@ import org.springframework.core.GenericTypeResolver;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -34,11 +33,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 	}
 	
 	
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate=new NamedParameterJdbcTemplate(this.jdbcTemplate);
-	public void inser(T entity){
 		
-	}
-	
 	@Override
 	public void insert(T entity) throws IllegalArgumentException, IllegalAccessException{
 		final SqlProcessor<T> sqlProcessor=new SqlProcessor<T>(entity);
@@ -78,7 +73,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 		
 	@Override
 	public void delete(Long id) {
-		String sql = String.format("DELETE * FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
+		String sql = String.format("DELETE FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
 		jdbcTemplate.execute(sql);
 	}
 
@@ -86,7 +81,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 	@Override
 	public List<T> getAll() {
 		String sql="SELECT * FROM "+this.getClazz().getSimpleName();
-		return (List<T>)jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
 
 }

@@ -12,6 +12,8 @@ public interface DoctorService {
 	    void saveAll(List<Doctor> doctors) throws Exception;
 
 	    void save(Doctor doctor) throws Exception;
+	    
+	    void delete(Long id);
 
 	    Doctor get(Long id);
 

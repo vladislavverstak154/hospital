@@ -4,22 +4,36 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vvs.training.hospital.daodb.DoctorDao;
 import com.vvs.training.hospital.datamodel.Doctor;
 import com.vvs.training.hospital.services.DoctorService;
 
-@Repository
+@Service
 public class DoctorServiceImpl implements DoctorService {
 
 	@Inject
 	private DoctorDao doctorDao;
 	
 	@Override
+	public Doctor get(Long id) {
+		return doctorDao.get(id);
+	}
+	
+	@Override
 	public List<Doctor> getAll(){
 		return doctorDao.getAll();
+	}
+	
+	@Override
+	public void save(Doctor doctor) throws Exception{
+		if(doctor.getId().equals(null)){
+		doctorDao.insert(doctor);}
+		else{
+		doctorDao.update(doctor);
+		}
 	}
 
 	@Transactional
@@ -27,17 +41,15 @@ public class DoctorServiceImpl implements DoctorService {
 		for(Doctor doctor:doctors){
 			this.save(doctor);
 		}
-
 	}
-
+		
 	@Override
-	public void save(Doctor doctor) throws Exception{
-		doctorDao.update(doctor);
+	public void delete(Long id){
+		doctorDao.delete(id);
 	}
 
-	@Override
-	public Doctor get(Long id) {
-		return doctorDao.get(id);
-	}
+	
+	
+	
 
 }

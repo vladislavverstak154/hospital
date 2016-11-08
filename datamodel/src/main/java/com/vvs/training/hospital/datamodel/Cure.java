@@ -8,7 +8,9 @@ public class Cure extends AbstractModel {
 	
 	@Column(datatype = "setDate", name = "date_set")
 	private Date dateSet;
-
+	@Column(datatype = "setString", name = "diagnosis")
+	private String diagnosis;
+	
 	public Date getDateSet() {
 		return dateSet;
 	}
