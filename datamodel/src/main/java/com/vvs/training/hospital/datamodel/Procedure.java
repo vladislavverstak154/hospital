@@ -1,6 +1,6 @@
 package com.vvs.training.hospital.datamodel;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.vvs.training.hospital.annotations.Column;
 
@@ -9,6 +9,34 @@ public class Procedure extends AbstractModel {
 	private String title;
 	@Column(datatype = "setDate", name = "date_end")
 	private Date dateEnd;
+	@Column(datatype = "setLong", name = "doctor_id")
+	private Long doctorId;
+	@Column(datatype = "setLong", name = "nurse_id")
+	private Long nurseId;
+	@Column(datatype = "setLong", name = "cure_id")
+	private Long cureId;
+	
+	
+	
+	
+	public Long getDoctorId() {
+		return doctorId;
+	}
+	public void setDoctorId(Long doctorId) {
+		this.doctorId = doctorId;
+	}
+	public Long getNurseId() {
+		return nurseId;
+	}
+	public void setNurseId(Long nurseId) {
+		this.nurseId = nurseId;
+	}
+	public Long getCureId() {
+		return cureId;
+	}
+	public void setCureId(Long cureId) {
+		this.cureId = cureId;
+	}
 	public String getTitle() {
 		return title;
 	}

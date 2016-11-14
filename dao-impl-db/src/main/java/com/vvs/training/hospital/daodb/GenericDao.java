@@ -5,6 +5,7 @@ import java.util.List;
 import com.vvs.training.hospital.datamodel.AbstractModel;
 
 public interface GenericDao<T extends AbstractModel> {
+	
 	T get(Long id);
 
 	void insert(T entity) throws IllegalArgumentException, IllegalAccessException;

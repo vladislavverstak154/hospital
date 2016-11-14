@@ -5,12 +5,13 @@ import java.util.List;
 import com.vvs.training.hospital.datamodel.Patient;
 
 public interface PatientService {
-
+	
 	Patient get(Long id);
 	
-	void saveAll(List<Patient> patients);
+	List<Patient> getAll();
 
-	void save(Patient patient);
+	void saveAll(List<Patient> patients) throws Exception;
 
-	boolean isDaoExist();
+	void save(Patient patient) throws Exception;
+
 }

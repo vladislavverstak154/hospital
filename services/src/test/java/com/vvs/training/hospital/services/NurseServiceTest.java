@@ -23,28 +23,30 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vvs.training.hospital.datamodel.Doctor;
+import com.vvs.training.hospital.datamodel.Nurse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
-public class DoctorServiceTest {
+public class NurseServiceTest {
 
 	@Inject
 	private JdbcTemplate jdbcTemplate;
 
 	@Inject
-	private DoctorService doctorService;
-	private List<Doctor> doctors = new ArrayList<>(1);
+	private NurseService nurseService;
+	private List<Nurse> nurses = new ArrayList<>(1);
 	private List<Long> ids = new ArrayList<>(1);
 	private Long id;
-	private Doctor doctor;
+	private Nurse nurse;
+
 	
-	// get(Doctor doctor); Test
+	// get(Nurse nurse); Test
 	@Before
 	public void prepareMetadata() {
-		final String INSERT_SQL = "INSERT INTO DOCTOR(first_name, second_name, last_name) VALUES(?,?,?)";
-		final String one = "Verstak";
-		final String two = "Vladislav";
-		final String three = "Stanislavovich";
+		final String INSERT_SQL = "INSERT INTO NURSE(first_name, second_name, last_name) VALUES(?,?,?)";
+		final String one = "Viktoria";
+		final String two = "Verstak";
+		final String three = "Stanislavovna";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -60,23 +62,23 @@ public class DoctorServiceTest {
 
 	@Test
 	public void getByIdTest() {
-		Doctor doctor = doctorService.get(id);
-		Assert.assertNotNull(doctor);
+		Nurse nurse = nurseService.get(id);
+		Assert.assertNotNull(nurse);
 	}
 
 	@After
 	public void cleanGetByIdTest() {
-		this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE ID=" + this.id);
+		this.jdbcTemplate.update("DELETE FROM NURSE WHERE ID=" + this.id);
 	}
 
-	// getAll<Doctor>(); Test
+	// getAll<Nurse>(); Test
 	@After
 	public void prepareMetadataGetAll() {
 		for (int i = 0; i < 10; i++) {
-			final String INSERT_SQL = "INSERT INTO DOCTOR(first_name, second_name, last_name) VALUES(?,?,?)";
-			final String one = "Verstak";
-			final String two = "Vladislav";
-			final String three = "Stanislavovich";
+			final String INSERT_SQL = "INSERT INTO NURSE(first_name, second_name, last_name) VALUES(?,?,?)";
+			final String one = "Viktoria";
+			final String two = "Verstak";
+			final String three = "Stanislavovna";
 			KeyHolder keyHolder = new GeneratedKeyHolder();
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -93,79 +95,80 @@ public class DoctorServiceTest {
 
 	@Test
 	public void getAllTest() {
-		List<Doctor> doctors = doctorService.getAll();
-		Assert.assertNotNull(doctors.get(0));
-		Assert.assertNotNull(doctors.get(5));
+		List<Nurse> nurses = nurseService.getAll();
+		Assert.assertNotNull(nurses.get(0));
+		Assert.assertNotNull(nurses.get(5));
 	}
 
 	@After
 	public void cleanAllIdTest() {
 		Iterator iterator = this.ids.iterator();
 		while (iterator.hasNext()) {
-			this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE ID=" + iterator.next());
+			this.jdbcTemplate.update("DELETE FROM NURSE WHERE ID=" + iterator.next());
 		}
 	}
 
-	// save(Doctor doctor) test
+	// save(Nurse nurse) test
 	@Before
 	public void prepareMethodData() {
-		Doctor doctor = new Doctor();
-		doctor.setFirstName("Vl");
-		doctor.setSecondName("Ver");
-		doctor.setLastName("St");
-		this.doctor = doctor;
+		Nurse nurse = new Nurse();
+		nurse.setFirstName("Vi");
+		nurse.setSecondName("Ver");
+		nurse.setLastName("St");
+		this.nurse = nurse;
 	}
 
 	@Test
 	public void saveTest() {
 		try {
-			doctorService.save(this.doctor);
+			nurseService.save(this.nurse);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Assert.assertNotNull(this.doctor.getId());
+		Assert.assertNotNull(this.nurse.getId());
 	}
 
 	@After
 	public void cleanerSaveTest() {
-		this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE id=" + this.doctor.getId());
+		this.jdbcTemplate.update("DELETE FROM NURSE WHERE id=" + this.nurse.getId());
 	}
 
-	// saveAll(Doctor doctor) test
+	// saveAll() test
 	@Before
 	public void prepareMethodDataForSaveAll() {
-		for(int i=0;i<10;i++){
-		Doctor doctor = new Doctor();
-		doctor.setFirstName("Vl");
-		doctor.setSecondName("Ver");
-		doctor.setLastName("St");
-		this.doctors.add(doctor);}
+		for (int i = 0; i < 10; i++) {
+			Nurse nurse = new Nurse();
+			nurse.setFirstName("Vi");
+			nurse.setSecondName("Ver");
+			nurse.setLastName("St");
+			this.nurses.add(nurse);
+		}
 	}
 
 	@Test
 	public void saveAllTest() {
 		try {
-			doctorService.saveAll(this.doctors);
+			nurseService.saveAll(this.nurses);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Assert.assertNotNull(this.doctors.get(0).getId());
-		Assert.assertNotNull(this.doctors.get(5).getId());
+		Assert.assertNotNull(this.nurses.get(0).getId());
+		Assert.assertNotNull(this.nurses.get(5).getId());
 	}
 
 	@After
 	public void cleanerSaveAllTest() {
-		
-		this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE id=" + this.doctor.getId());
+
+		this.jdbcTemplate.update("DELETE FROM NURSE WHERE id=" + this.nurse.getId());
 	}
-	
-	//delete(Long id) test
+
+	// delete(Long id) test
 	@Before
 	public void prepareMetadataForDelete() {
-		final String INSERT_SQL = "INSERT INTO DOCTOR(first_name, second_name, last_name) VALUES(?,?,?)";
-		final String one = "Verstak";
-		final String two = "Vladislav";
-		final String three = "Stanislavovich";
+		final String INSERT_SQL = "INSERT INTO NURSE(first_name, second_name, last_name) VALUES(?,?,?)";
+		final String one = "Viktoria";
+		final String two = "Verstak";
+		final String three = "Stanislavovna";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -181,27 +184,9 @@ public class DoctorServiceTest {
 
 	@Test
 	public void deleteTest() {
-		doctorService.delete(this.id);
-		this.jdbcTemplate.queryForObject("SELECT FROM DOCTOR WHERE id=" + this.id,new BeanPropertyRowMapper<Doctor>(Doctor.class));
+		nurseService.delete(this.id);
+		this.jdbcTemplate.queryForObject("SELECT FROM NURSE WHERE id=" + this.id,
+				new BeanPropertyRowMapper<Nurse>(Nurse.class));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

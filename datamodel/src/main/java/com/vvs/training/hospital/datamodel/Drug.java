@@ -9,6 +9,14 @@ public class Drug extends AbstractModel {
 	private String recipe;
 	@Column(datatype = "setDate", name = "date_end")
 	private Date dateEnd;
+	@Column(datatype = "setLong", name = "doctor_id")
+	private Long doctorId;
+	@Column(datatype = "setLong", name = "nurse_id")
+	private Long nurseId;
+	@Column(datatype = "setLong", name = "cure_id")
+	private Long cureId;
+	
+	
 	public String getRecipe() {
 		return recipe;
 	}

@@ -6,6 +6,7 @@ CREATE TABLE "patient" (
 	"date_arrive" DATE NOT NULL,
 	"date_depart" DATE NOT NULL,
 	"doctor_id" bigint NOT NULL,
+	
 	CONSTRAINT patient_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

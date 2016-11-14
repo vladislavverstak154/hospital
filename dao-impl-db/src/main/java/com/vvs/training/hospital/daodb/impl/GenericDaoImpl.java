@@ -83,5 +83,11 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 		String sql="SELECT * FROM "+this.getClazz().getSimpleName();
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
+	
+	public  <K> K getByField(K value){
+		String sql=sqlProcessor.get
+		
+		return kObject;
+	}
 
 }

@@ -1,0 +1,14 @@
+17:21:24.847 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=3, first name=Vl second name=Ver third name=St
+17:21:25.118 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Operation of saving list of doctors in DataBase has started
+17:21:25.124 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=28, first name=Vl second name=Ver third name=St
+17:21:25.127 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=29, first name=Vl second name=Ver third name=St
+17:21:25.130 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=30, first name=Vl second name=Ver third name=St
+17:21:25.134 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=31, first name=Vl second name=Ver third name=St
+17:21:25.140 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=32, first name=Vl second name=Ver third name=St
+17:21:25.143 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=33, first name=Vl second name=Ver third name=St
+17:21:25.147 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=34, first name=Vl second name=Ver third name=St
+17:21:25.151 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=35, first name=Vl second name=Ver third name=St
+17:21:25.156 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=36, first name=Vl second name=Ver third name=St
+17:21:25.160 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=37, first name=Vl second name=Ver third name=St
+17:21:25.161 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - All doctors from the list has been saved
+17:21:25.373 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=61

@@ -18,5 +18,6 @@ public interface DoctorService {
 	    Doctor get(Long id);
 
 		List<Doctor> getAll();
-	
+		
+			
 }
