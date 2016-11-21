@@ -25,21 +25,19 @@ public class PatientServiceImpl implements PatientService {
 	public Patient get(Long id) {
 		return patientDao.get(id);
 	}
-		
+
 	@Override
 	public List<Patient> getAll() {
 		return patientDao.getAll();
 	}
 
 	public void save(Patient patient) throws Exception {
-		if (patient.getDoctorId() != null) {
-			if (patient.getId() == null) {
-				patientDao.insert(patient);
-				LOGGER.info("Patient created. id={}, first name={} second name={} third name={}", patient.getId(),
-						patient.getFirstName(), patient.getSecondName(), patient.getLastName());
-			} else {
-				patientDao.update(patient);
-			}
+		if (patient.getId() == null) {
+			patientDao.insert(patient);
+			LOGGER.info("Patient created. id={}, first name={} second name={} third name={}", patient.getId(),
+					patient.getFirstName(), patient.getSecondName(), patient.getLastName());
+		} else {
+			patientDao.update(patient);
 		}
 	}
 

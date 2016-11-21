@@ -2,7 +2,9 @@ package com.vvs.training.hospital.datamodel;
 import java.util.Date;
 
 import com.vvs.training.hospital.annotations.Column;
+import com.vvs.training.hospital.annotations.Table;
 
+@Table(name="patient")
 public class Patient extends Person {
 	@Column(datatype = "setDate", name = "date_arrive")
 	private Date dateArrive;
@@ -10,6 +12,8 @@ public class Patient extends Person {
 	private Date dateDepart;
 	@Column(datatype="setDate",name="date_of_birth")
 	private Date dateOfBirth;
+	
+	
 	
 	public Date getDateOfBirth() {
 		return dateOfBirth;

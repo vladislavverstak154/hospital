@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import com.vvs.training.hospital.annotations.Column;
 import com.vvs.training.hospital.annotations.Id;
@@ -15,100 +18,58 @@ public class SqlProcessor<T> {
 
 	private T entity;
 	private Class clazz;
-	private ArrayList<String> columnNames = new ArrayList<>(1);
-	private String columnNamesRow;
-	private String argPlaces;
-	private ArrayList<String> datatypes = new ArrayList<>(1);
-	private ArrayList<Field> fields = new ArrayList<>(1);
+	private Map<String, Field> nameField;
+	private Set<String> columnNames;
 	private Long id;
 
 	public SqlProcessor(T entity) throws IllegalArgumentException, IllegalAccessException {
 
 		this.entity = entity;
 		this.clazz = entity.getClass();
-		this.fields=this.getAnnotatedFields();
-		
-	}
-	
-	public <K>String getByFieldSql(String field, K value){
-		
-		String sql=new String("SELECT FROM "+clazz.getSimpleName()+"WHERE "+fields.)
-		
-		return sql;
-		
+		this.getAnnotatedFields();
+		this.columnNames = this.nameField.keySet();
 	}
 
-	public String insertSql() {
-		String sql = new String("INSERT INTO " + clazz.getSimpleName() + "(" + columnNamesRow + ") " + "VALUES("
-				+ this.argPlaces + ")");
+	public <K> String getByFieldSql(String field, K value) {
+
+		String sql = null;
+
+		try {
+			sql = new String("SELECT FROM " + clazz.getSimpleName() + "WHERE "
+					+ this.clazz.getDeclaredField(field).getAnnotation(Column.class).name());
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		}
+
 		return sql;
+
 	}
 
 	public String updateSql() {
-		String sql = new String("UPDATE " + clazz.getSimpleName() + " SET(" + columnNamesRow + ")" + "=("
-				+ this.argPlaces + ")" + " WHERE id=" + this.id);
+		Iterator<String> iterator = columnNames.iterator();
+		StringBuffer values=new StringBuffer();
+		while(iterator.hasNext()){
+		values.append(iterator.next()+"="+nameField.get(iterator.next()).getName());
+		}
+		String sql = new String("UPDATE " + this.clazz.getSimpleName() + " SET("+values.toString()+")" + " WHERE id=" + this.id);				
 		return sql;
 	}
 
-	public PreparedStatement setArgs(PreparedStatement statement) throws NoSuchMethodException, SecurityException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		int i = 1;
-		Iterator<Field> iterator = this.fields.iterator();
-		for (String datatype : this.datatypes) {
-			Field field = iterator.next();
-			Class clazz = statement.getClass();
-			Method method = statement.getClass().getMethod(datatype, int.class, field.getType());
-			method.setAccessible(true);
-			field.setAccessible(true);
-			method.invoke(statement, i, field.get(this.entity));
-			i++;
-		}
-		
-		return statement;
-	}
-
-	// returns column names divided by comma
-	private void getColumnNames() throws IllegalArgumentException, IllegalAccessException {
-		StringBuilder columnNames = new StringBuilder("");
-		StringBuilder argPlaces = new StringBuilder("");
-		Iterator<Field> iterator = getAnnotatedFields().iterator();
-		while (iterator.hasNext()) {
-			Field field = iterator.next();
-			Column column = field.getAnnotation(Column.class);
-			StringBuilder columnName = new StringBuilder(column.name());
-			this.columnNames.add(columnName.toString());
-			this.datatypes.add(column.datatype());
-			this.fields.add(field);
-			columnNames.append(columnName);
-			if (iterator.hasNext()) {
-				columnNames.append(',');
-			}
-			argPlaces.append('?');
-			if (iterator.hasNext()) {
-				argPlaces.append(',');
-			}
-
-		}
-		this.columnNamesRow = columnNames.toString();
-		this.argPlaces = argPlaces.toString();
-	}
-
-	private ArrayList<Field> getAnnotatedFields() throws IllegalArgumentException, IllegalAccessException {
+	// This method select only annotated fields that are related to database and
+	// put them into map<columnName,fieldName>
+	private void getAnnotatedFields() {
 		ArrayList<Field> fieldsA = getInheritedFields(this.clazz);
 		ArrayList<Field> fieldsB = new ArrayList<>(1);
+		this.nameField = new TreeMap<String, Field>();
 		for (Field field : fieldsA) {
-			if (field.isAnnotationPresent(Id.class)) {
-				field.setAccessible(true);
-				this.id = (Long) field.get(this.entity);
-			}
 			if (field.isAnnotationPresent(Column.class)) {
+				this.nameField.put(field.getAnnotation(Column.class).name(), field);
 				fieldsB.add(field);
-				
 			}
 		}
-		return fieldsB;
 	}
 
+	// This method returns all fields of the Entity type
 	public static ArrayList<Field> getInheritedFields(Class<?> clazz) {
 		ArrayList<Field> fields = new ArrayList<Field>(1);
 		for (Class<?> c = clazz; c != null; c = c.getSuperclass()) {

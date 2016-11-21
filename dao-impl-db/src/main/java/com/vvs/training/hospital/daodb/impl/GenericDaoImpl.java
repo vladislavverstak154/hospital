@@ -1,8 +1,5 @@
 package com.vvs.training.hospital.daodb.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,9 +7,10 @@ import javax.inject.Inject;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import com.vvs.training.hospital.daodb.GenericDao;
 import com.vvs.training.hospital.daodb.sql.SqlProcessor;
@@ -26,49 +24,30 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 
 	@Inject
 	private JdbcTemplate jdbcTemplate;
-
+	@Inject
+	private SimpleJdbcInsert insertEntity;
+	@Inject
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	
 	public T get(Long id) {
 		String sql = String.format("SELECT * FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
 		return (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
 	
 	
-		
-	@Override
-	public void insert(T entity) throws IllegalArgumentException, IllegalAccessException{
-		final SqlProcessor<T> sqlProcessor=new SqlProcessor<T>(entity);
-		final String INSERT_SQL=sqlProcessor.insertSql();
-		
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcTemplate.update(
-		    new PreparedStatementCreator() {
-		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-		            PreparedStatement ps = connection.prepareStatement(INSERT_SQL, new String[] {"id"});
-		            try {
-		        		ps=sqlProcessor.setArgs(ps);
-					} catch (Exception e) {}
-		            return ps;
-		        }
-		    },
-		    keyHolder);
-		Long i=keyHolder.getKey().longValue();
-		entity.setId(i);
-	};
+	public void insert(T entity){
+		this.insertEntity.withTableName(this.getClazz().getSimpleName()).usingGeneratedKeyColumns("id");
+		SqlParameterSource parameters = new BeanPropertySqlParameterSource(entity);
+        Number newId = insertEntity.executeAndReturnKey(parameters);
+        entity.setId(newId.longValue());
+	}
 	
 	@Override
 	public void update(T entity) throws Exception{
-		final SqlProcessor<T> sqlProcessor=new SqlProcessor<T>(entity);
-		final String INSERT_SQL=sqlProcessor.updateSql();
-		jdbcTemplate.update(
-		    new PreparedStatementCreator() {
-		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-		            PreparedStatement ps = connection.prepareStatement(INSERT_SQL);
-		            try {
-		        		ps=sqlProcessor.setArgs(ps);
-					} catch (Exception e) {System.out.println("SqlProcessor troubles");}
-		            return ps;
-		        }
-		    });
+		String sql =new SqlProcessor(entity).updateSql();
+	    SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(entity);
+	    this.namedParameterJdbcTemplate.update(sql, namedParameters);
 	}
 		
 	@Override
@@ -84,10 +63,10 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
 	
-	public  <K> K getByField(K value){
+	/**public  <K> K getByField(K value){
 		String sql=sqlProcessor.get
 		
 		return kObject;
-	}
+	} */
 
 }

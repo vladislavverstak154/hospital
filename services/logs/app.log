@@ -1,14 +1,10 @@
-17:21:24.847 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=3, first name=Vl second name=Ver third name=St
-17:21:25.118 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Operation of saving list of doctors in DataBase has started
-17:21:25.124 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=28, first name=Vl second name=Ver third name=St
-17:21:25.127 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=29, first name=Vl second name=Ver third name=St
-17:21:25.130 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=30, first name=Vl second name=Ver third name=St
-17:21:25.134 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=31, first name=Vl second name=Ver third name=St
-17:21:25.140 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=32, first name=Vl second name=Ver third name=St
-17:21:25.143 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=33, first name=Vl second name=Ver third name=St
-17:21:25.147 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=34, first name=Vl second name=Ver third name=St
-17:21:25.151 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=35, first name=Vl second name=Ver third name=St
-17:21:25.156 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=36, first name=Vl second name=Ver third name=St
-17:21:25.160 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=37, first name=Vl second name=Ver third name=St
-17:21:25.161 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - All doctors from the list has been saved
-17:21:25.373 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=61
+08:32:17.743 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=300, first name=Vl second name=Ver third name=St
+08:34:29.490 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=301, first name=Vl second name=Ver third name=St
+08:35:36.816 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=302, first name=Vladislav second name=Verstak third name=Stanislavovich
+08:37:59.353 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=304, first name=Vladislav second name=Verstak third name=Stanislavovich
+08:41:22.247 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=306, first name=Vladislav second name=Verstak third name=Stanislavovich
+08:43:12.165 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=307, first name=Vladislav second name=Verstak third name=Stanislavovich
+08:44:40.033 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=308, first name=Vladislav second name=Verstak third name=Stanislavovich
+08:56:09.557 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=309, first name=Vladislav second name=Verstak third name=Stanislavovich
+08:56:42.895 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=310, first name=Vladislav second name=Verstak third name=Stanislavovich
+09:00:16.390 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=311, first name=Vladislav second name=Verstak third name=Stanislavovich
