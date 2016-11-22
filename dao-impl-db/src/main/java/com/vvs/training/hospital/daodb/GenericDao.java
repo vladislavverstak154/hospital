@@ -8,7 +8,7 @@ public interface GenericDao<T extends AbstractModel> {
 	
 	T get(Long id);
 
-	void insert(T entity) throws IllegalArgumentException, IllegalAccessException;
+	void insert(T entity) ;
 
 	void update(T entity) throws Exception;
 

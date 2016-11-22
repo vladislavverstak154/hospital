@@ -5,17 +5,19 @@
 	<groupId>com.vvs.training</groupId>
 	<artifactId>hospital</artifactId>
 	<version>1.0.0</version>
-	
+
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<common.project.version>1.0</common.project.version>
 		<spring.version>4.0.3.RELEASE</spring.version>
+		<dbh2.version>1.4.187</dbh2.version>
+		<hsqldb.version>2.3.2</hsqldb.version>
 	</properties>
 
 	<modules>
-	  <module>datamodel</module>
+		<module>datamodel</module>
 		<module>dao-api</module>
 		<module>dao-impl-db</module>
 		<module>dao-impl-xml</module>
@@ -62,9 +64,9 @@
 				<artifactId>webapp</artifactId>
 				<version>1.0.0</version>
 			</dependency>
-			
+
 			<!-- Other libraries -->
-			
+
 			<dependency>
 				<groupId>javax.inject</groupId>
 				<artifactId>javax.inject</artifactId>
@@ -76,7 +78,7 @@
 				<artifactId>spring-core</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
@@ -113,16 +115,16 @@
 				<version>${spring.version}</version>
 				<scope>test</scope>
 			</dependency>
-			
-			
-			
+
+
+
 			<!-- Connecting DataBase -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
@@ -140,19 +142,34 @@
 				<artifactId>commons-dbcp</artifactId>
 				<version>1.4</version>
 			</dependency>
-			
+
 			<!-- Libraries for test -->
-			
+
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.12</version>
 				<scope>test</scope>
 			</dependency>
-			
-			
-			<!--Loggers-->
-			
+
+			<!-- H2 DB -->
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${dbh2.version}</version>
+			</dependency>
+
+			<!-- HyperSQL DB -->
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb.version}</version>
+			</dependency>
+
+
+			<!--Loggers -->
+
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-api</artifactId>
@@ -173,7 +190,7 @@
 				<artifactId>log4j-jcl</artifactId>
 				<version>2.1</version>
 			</dependency>
-			
+
 
 		</dependencies>
 	</dependencyManagement>

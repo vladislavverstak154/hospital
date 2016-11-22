@@ -29,13 +29,13 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements Generic
 	@Inject
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	
+	@Override
 	public T get(Long id) {
 		String sql = String.format("SELECT * FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
 		return (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
 	
-	
+	@Override
 	public void insert(T entity){
 		this.insertEntity.withTableName(this.getClazz().getSimpleName()).usingGeneratedKeyColumns("id");
 		SqlParameterSource parameters = new BeanPropertySqlParameterSource(entity);
