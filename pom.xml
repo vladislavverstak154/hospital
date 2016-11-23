@@ -14,6 +14,8 @@
 		<spring.version>4.0.3.RELEASE</spring.version>
 		<dbh2.version>1.4.187</dbh2.version>
 		<hsqldb.version>2.3.2</hsqldb.version>
+		<dbunit.version>2.4.9</dbunit.version>
+		<poi.version>3.2-FINAL</poi.version>
 	</properties>
 
 	<modules>
@@ -150,6 +152,20 @@
 				<artifactId>junit</artifactId>
 				<version>4.12</version>
 				<scope>test</scope>
+			</dependency>
+
+			<!-- Libraries for test DBUnit -->
+
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>${dbunit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
 			</dependency>
 
 			<!-- H2 DB -->

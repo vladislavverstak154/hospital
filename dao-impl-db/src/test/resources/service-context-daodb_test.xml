@@ -1,11 +1,8 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" 
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:jee="http://www.springframework.org/schema/jee" 
-	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -25,17 +22,31 @@
 
 	<context:component-scan base-package="com.vvs.training.hospital.daodb.impl" />
 
+	<context:property-placeholder
+		ignore-unresolvable="true" location="classpath:db_test.properties" />
 
-	<!-- In Memory Database for DAO layer testing -->
-	<jdbc:embedded-database id="dataSource" type="HSQL">
-		<jdbc:script location="classpath:create-dao_test_db.sql" />
-		<jdbc:script location="classpath:insert-data_dao_test.sql" />
-	</jdbc:embedded-database>
+	<!-- Initialization for data source -->
+	<bean id="dataSource"
+		class="com.vvs.training.hospital.daodb.util.SchemaNameAwareBasicDataSource"
+		destroy-method="close">
 
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="schema" value="${db.schema}" />
+	</bean>
 
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg ref="dataSource" />
 	</bean>
+
+	<!-- In Memory Database for DAO layer testing -->
+
+	<!-- <jdbc:embedded-database id="dataSource" type="HSQL"> -->
+	<!--<jdbc:script location="classpath:create-dao_test_db.sql" /> -->
+	<!-- <jdbc:script location="classpath:insert-data_dao_test.sql" /> -->
+	<!-- </jdbc:embedded-database> -->
 
 	<bean id="NamedParameterJdbcTemplate"
 		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
@@ -51,6 +62,15 @@
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- DB unit beans -->
+
+	<bean id="databaseTester" class="org.dbunit.DataSourceDatabaseTester">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<bean id="xlsDataFileLoader" class="org.dbunit.util.fileloader.XlsDataFileLoader">
 	</bean>
 
 
