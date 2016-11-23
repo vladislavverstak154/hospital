@@ -1,14 +1,10 @@
 package com.vvs.training.hospital.services;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.sql.DataSource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -16,11 +12,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -30,6 +22,8 @@ import com.vvs.training.hospital.datamodel.Doctor;
 @ContextConfiguration(locations = "classpath:service-context.xml")
 public class DoctorServiceTest {
 
+	@Inject 
+	private DataSource dataSource;
 	@Inject
 	private JdbcTemplate jdbcTemplate;
 
@@ -57,8 +51,9 @@ public class DoctorServiceTest {
 	}
 //Это эта папка
 	@After
+	@Ignore
 	public void cleanGetByIdTest() {
-		this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE ID=" + this.id);
+		//this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE ID=" + this.id);
 	}
 
 	/**
@@ -113,7 +108,7 @@ public class DoctorServiceTest {
 	@Ignore
 	@After
 	public void cleanerSaveTest() {
-		this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE id=" + this.doctor.getId());
+		//this.jdbcTemplate.update("DELETE FROM DOCTOR WHERE id=" + this.doctor.getId());
 	}
 
 	/**

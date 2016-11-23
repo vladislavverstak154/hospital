@@ -1,24 +1,47 @@
 package com.vvs.training.hospital.daodb;
 
-import javax.inject.Inject;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-import org.dbunit.database.QueryDataSet;
+import javax.inject.Inject;
+import javax.sql.DataSource;
+
+import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.excel.XlsDataSet;
+
+import com.vvs.training.hospital.daodb.util.SchemaNameAwareBasicDataSource;
 
 public class ToXlsWriter {
-	
+
 	@Inject
-	private 
+	private DataSource dataSource;
+	private Connection jdbcConnection;
+	private IDatabaseConnection iConnection;
+	private IDataSet fullDataSet;
+	private FileOutputStream file;
 	
-	// экспортируем часть базы данных
-	QueryDataSet partialDataSet = new QueryDataSet(iConnection);
-	// экспорт таблицы, но не всей, а только определенных записей
-	partialDataSet.addTable("users", "SELECT * FROM users where sex = ‘m’ ");
-	// экспорт всей таблицы
-	partialDataSet.addTable("articles");
-	// сохраняем изменения в файл
-	FlatXmlDataSet.write(partialDataSet, new FileOutputStream("users-and-articles-dataset.xml"));
-	// экспорт всей базы данных полностью
-	IDataSet fullDataSet = iConnection.createDataSet();
-	FlatXmlDataSet.write(fullDataSet, new FileOutputStream("all-tables-dataset.xml"));
+	public ToXlsWriter(DataSource datasourse) throws Exception{
+		this.dataSource=datasourse;
+		this.jdbcConnection = this.dataSource.getConnection();
+		this.iConnection = new DatabaseConnection(jdbcConnection);
+		this.fullDataSet = iConnection.createDataSet();
+		this.file = new FileOutputStream("all.xls");
+		XlsDataSet.write(fullDataSet, file);
+	}
 }
+				
+	
+		
+		
+	
+	
+
+
+

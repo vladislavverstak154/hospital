@@ -37,12 +37,10 @@ public class DoctorServiceImpl implements DoctorService {
 	public void save(Doctor doctor) throws Exception {
 		if (doctor.getId()==null) {
 			doctorDao.insert(doctor);
-			LOGGER.info("Docotr created. id={}, first name={} second name={} third name={}",
-                 doctor.getId(), doctor.getFirstName(), doctor.getSecondName(), doctor.getLastName());
+			
 		} else {
 			doctorDao.update(doctor);
-			LOGGER.info("Doctor updated. id={}, first name={} second name={} third name={}",
-	                 doctor.getId(), doctor.getFirstName(), doctor.getSecondName(), doctor.getLastName());
+			
 		}
 	}
 

@@ -33,12 +33,10 @@ public class NurseServiceImpl implements NurseService {
 	public void save(Nurse nurse) throws Exception {
 		if (nurse.getId()==null) {
 			nurseDao.insert(nurse);
-			LOGGER.info("Nurse created. id={}, first name={} second name={} third name={}",
-                 nurse.getId(), nurse.getFirstName(), nurse.getSecondName(), nurse.getLastName());
+			
 		} else {
 			nurseDao.update(nurse);
-			LOGGER.info("Nurse updated. id={}, first name={} second name={} third name={}",
-	                 nurse.getId(), nurse.getFirstName(), nurse.getSecondName(), nurse.getLastName());
+			
 		}
 	}
 

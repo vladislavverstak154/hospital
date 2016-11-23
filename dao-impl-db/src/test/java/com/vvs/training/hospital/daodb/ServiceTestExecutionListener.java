@@ -33,10 +33,8 @@ public class ServiceTestExecutionListener implements TestExecutionListener {
 	}
 	String dataSetName = dataSetAnnotation.setUpDataSet();
 	if (!dataSetName.equals("") ) {
-	databaseTester = (IDatabaseTester)
-	testCtx.getApplicationContext().getBean("databaseTester");
-	XlsDataFileLoader xlsDataFileLoader = (XlsDataFileLoader)
-	testCtx.getApplicationContext().getBean("xlsDataFileLoader");
+	databaseTester = (IDatabaseTester)testCtx.getApplicationContext().getBean("databaseTester");
+	XlsDataFileLoader xlsDataFileLoader = (XlsDataFileLoader)testCtx.getApplicationContext().getBean("xlsDataFileLoader");
 	IDataSet dataSet = xlsDataFileLoader.load(dataSetName);
 	databaseTester.setDataSet(dataSet);
 	databaseTester.onSetup();

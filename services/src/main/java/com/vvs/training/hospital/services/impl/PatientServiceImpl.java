@@ -34,8 +34,7 @@ public class PatientServiceImpl implements PatientService {
 	public void save(Patient patient) throws Exception {
 		if (patient.getId() == null) {
 			patientDao.insert(patient);
-			LOGGER.info("Patient created. id={}, first name={} second name={} third name={}", patient.getId(),
-					patient.getFirstName(), patient.getSecondName(), patient.getLastName());
+			
 		} else {
 			patientDao.update(patient);
 		}
