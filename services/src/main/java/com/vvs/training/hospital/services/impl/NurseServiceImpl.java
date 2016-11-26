@@ -8,14 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vvs.training.hospital.daodb.NurseDao;
+import com.vvs.training.hospital.daoapi.INurseDao;
 import com.vvs.training.hospital.datamodel.Nurse;
 import com.vvs.training.hospital.services.NurseService;
 
 public class NurseServiceImpl implements NurseService {
 	
 	@Inject
-	private NurseDao nurseDao;
+	private INurseDao nurseDao;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NurseServiceImpl.class.getName());
 

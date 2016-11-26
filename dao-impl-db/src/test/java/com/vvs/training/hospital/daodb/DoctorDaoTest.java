@@ -15,6 +15,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.vvs.training.hospital.daoapi.IDoctorDao;
 import com.vvs.training.hospital.daodb.exception.ExistEntityInsertException;
 import com.vvs.training.hospital.datamodel.Doctor;
 
@@ -26,7 +27,7 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	// @Inject
 	// private SchemaNameAwareBasicDataSource dataSource;
 	@Inject
-	private DoctorDao doctorDao;
+	private IDoctorDao doctorDao;
 	private List<Doctor> doctors = new ArrayList<>(1);
 	private List<Long> ids = new ArrayList<>(1);
 	private Doctor doctor;

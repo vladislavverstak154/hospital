@@ -13,12 +13,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
-import com.vvs.training.hospital.daodb.GenericDao;
+import com.vvs.training.hospital.daoapi.IGenericDao;
 import com.vvs.training.hospital.daodb.exception.ExistEntityInsertException;
 import com.vvs.training.hospital.daodb.sql.SqlProcessor;
 import com.vvs.training.hospital.datamodel.AbstractModel;
 
-public abstract class GenericDaoImpl<T extends AbstractModel> implements GenericDao<T> {
+public abstract class GenericDaoImpl<T extends AbstractModel> implements IGenericDao<T> {
 
 	protected Class<T> getClazz() {
 		return (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), GenericDaoImpl.class);

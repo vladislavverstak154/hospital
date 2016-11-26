@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vvs.training.hospital.daodb.DoctorDao;
-import com.vvs.training.hospital.daodb.PatientDao;
+import com.vvs.training.hospital.daoapi.IDoctorDao;
 import com.vvs.training.hospital.datamodel.Doctor;
 import com.vvs.training.hospital.services.DoctorService;
 
@@ -18,7 +17,7 @@ import com.vvs.training.hospital.services.DoctorService;
 public class DoctorServiceImpl implements DoctorService {
 
 	@Inject
-	private DoctorDao doctorDao;
+	private IDoctorDao doctorDao;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(DoctorServiceImpl.class.getName());
 
