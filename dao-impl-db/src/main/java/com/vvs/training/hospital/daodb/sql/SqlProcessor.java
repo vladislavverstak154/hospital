@@ -47,11 +47,18 @@ public class SqlProcessor<T> {
 
 	public String updateSql() {
 		Iterator<String> iterator = columnNames.iterator();
-		StringBuffer values=new StringBuffer();
-		while(iterator.hasNext()){
-		values.append(iterator.next()+"="+nameField.get(iterator.next()).getName());
+		StringBuffer values = new StringBuffer();
+		while (iterator.hasNext()) {
+			String currentField = iterator.next();
+			values.append(currentField + " =" + " :" + nameField.get(currentField).getName());
+			if (iterator.hasNext()) {
+				values.append(", ");
+			}
+
 		}
-		String sql = new String("UPDATE " + this.clazz.getSimpleName() + " SET("+values.toString()+")" + " WHERE id=" + this.id);				
+		String sql = new String(
+				"UPDATE " + this.clazz.getSimpleName() + " SET " + values.toString() + " " + " WHERE id=" + this.id);
+		System.out.println(sql);
 		return sql;
 	}
 

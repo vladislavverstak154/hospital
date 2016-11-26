@@ -31,11 +31,11 @@ public class Doctor extends Person {
 	}
 
 	public Date getDateEndHoliday() {
-		return dateEndHoliday;
+		return this.dateEndHoliday;
 	}
 
-	public void setDateEndHoliday(Date dateEndHoliday) {
-		this.dateEndHoliday = dateEndHoliday;
+	public void setDateEndHoliday(Date date) {
+		this.dateEndHoliday = date;
 	}
 	
 	
