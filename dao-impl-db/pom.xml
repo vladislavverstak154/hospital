@@ -71,10 +71,10 @@
 
 		<!--Libraries for test DBunit -->
 
-		<dependency>
-			<groupId>org.dbunit</groupId>
-			<artifactId>dbunit</artifactId>
-		</dependency>
+		<!-- <dependency> -->
+			<!-- <groupId>org.dbunit</groupId> -->
+			<!-- <artifactId>dbunit</artifactId> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -104,19 +104,7 @@
 
 		</dependency>
 
-		<!-- H2 DB -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
-
-		<!-- HyperSQL DB -->
-
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
-
+		
 	</dependencies>
 
 </project>

@@ -13,7 +13,6 @@
 		<common.project.version>1.0</common.project.version>
 		<spring.version>4.0.3.RELEASE</spring.version>
 		<dbh2.version>1.4.187</dbh2.version>
-		<hsqldb.version>2.3.2</hsqldb.version>
 		<dbunit.version>2.4.9</dbunit.version>
 		<poi.version>3.2-FINAL</poi.version>
 		<jetty9.version>9.2.13.v20150730</jetty9.version>
@@ -193,21 +192,7 @@
 				<version>${poi.version}</version>
 			</dependency>
 
-			<!-- H2 DB -->
-
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>${dbh2.version}</version>
-			</dependency>
-
-			<!-- HyperSQL DB -->
-			<dependency>
-				<groupId>org.hsqldb</groupId>
-				<artifactId>hsqldb</artifactId>
-				<version>${hsqldb.version}</version>
-			</dependency>
-
+			
 
 			<!--Loggers -->
 
@@ -256,6 +241,12 @@
 				<artifactId>jetty-jmx</artifactId>
 				<version>${jetty9.version}</version>
 				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 
 

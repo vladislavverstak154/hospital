@@ -1,6 +1,6 @@
-package com.epam.training.library.web.model;
+package com.vvs.training.hospital.web.model;
 
-public class AuthorModel {
+public class DoctorModel {
     private Long id;
     private String firstName;
     private String lastName;
@@ -31,7 +31,7 @@ public class AuthorModel {
 
     @Override
     public String toString() {
-        return "AuthorModel [id=" + id + ", firstName=" + firstName
+        return "DoctorModel [id=" + id + ", firstName=" + firstName
                 + ", lastName=" + lastName + "]";
     }
 
