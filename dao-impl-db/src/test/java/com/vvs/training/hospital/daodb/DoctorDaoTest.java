@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vvs.training.hospital.daoapi.IDoctorDao;
 import com.vvs.training.hospital.daodb.exception.ExistEntityInsertException;
+import com.vvs.training.hospital.daodb.util.SchemaNameAwareBasicDataSource;
 import com.vvs.training.hospital.datamodel.Doctor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,8 +26,8 @@ import com.vvs.training.hospital.datamodel.Doctor;
 @TestExecutionListeners({ ServiceTestExecutionListener.class })
 public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-	// @Inject
-	// private SchemaNameAwareBasicDataSource dataSource;
+	 @Inject
+	 private SchemaNameAwareBasicDataSource dataSource;
 	@Inject
 	private IDoctorDao doctorDao;
 	private List<Doctor> doctors = new ArrayList<>(1);
@@ -55,11 +57,11 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	//@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void testGetById() throws Exception {
-		Doctor doctor = doctorDao.get(1l);
-		Assert.assertNotNull(doctor);
+		new ToXlsWriter(this.dataSource);
 	}
 
 	//@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@Ignore
 	@Test
 	public void insertTest() throws Exception {
 		// Checks if entity was inserted
@@ -72,6 +74,8 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		} catch (ExistEntityInsertException e) {
 
 		}
+		
+		
 	}
 
 	//@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDaoTest.xls")

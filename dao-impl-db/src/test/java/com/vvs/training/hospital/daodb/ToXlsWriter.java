@@ -31,7 +31,7 @@ public class ToXlsWriter {
 		this.jdbcConnection = this.dataSource.getConnection();
 		this.iConnection = new DatabaseConnection(jdbcConnection);
 		this.fullDataSet = iConnection.createDataSet();
-		this.file = new FileOutputStream("all.xls");
+		this.file = new FileOutputStream("ALL.xls");
 		XlsDataSet.write(fullDataSet, file);
 	}
 

@@ -1,4 +1,4 @@
-﻿CREATE TABLE "patient" (
+CREATE TABLE "patient" (
 	"id" serial NOT NULL,
 	"first_name" character varying NOT NULL,
 	"second_name" character varying NOT NULL,
@@ -15,9 +15,9 @@
 
 CREATE TABLE "doctor" (
 	"id" serial NOT NULL,
-	"first_name" serial NOT NULL,
-	"second_name" serial NOT NULL,
-	"last_name" serial NOT NULL,
+	"first_name" character varying NOT NULL,
+	"second_name" character varying NOT NULL,
+	"last_name" character varying NOT NULL,
 	"date_hire" DATE,
 	"date_end_holiday" DATE,
 	"patient_amount" bigint,
@@ -110,7 +110,7 @@ CREATE TABLE "place" (
 
 CREATE TABLE "user" (
 	"email" character varying NOT NULL UNIQUE,
-	"password" serial NOT NULL UNIQUE,
+	"password" character varying NOT NULL,
 	"role_id" bigint,
 	CONSTRAINT user_pk PRIMARY KEY ("email")
 ) WITH (
