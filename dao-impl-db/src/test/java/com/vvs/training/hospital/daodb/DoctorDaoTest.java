@@ -52,14 +52,14 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctorForUpdate.setPatientAmount(10l);
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDaoTest.xls")
+	//@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void testGetById() throws Exception {
 		Doctor doctor = doctorDao.get(1l);
 		Assert.assertNotNull(doctor);
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDaoTest.xls")
+	//@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void insertTest() throws Exception {
 		// Checks if entity was inserted

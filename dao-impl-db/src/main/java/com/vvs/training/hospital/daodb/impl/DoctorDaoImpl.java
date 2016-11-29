@@ -7,5 +7,9 @@ import com.vvs.training.hospital.datamodel.Doctor;
 
 @Repository
 public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao{
-		
+	
+	public Doctor getByEmail(String email){
+		return getByField("email", email);
+	}
+	
 }

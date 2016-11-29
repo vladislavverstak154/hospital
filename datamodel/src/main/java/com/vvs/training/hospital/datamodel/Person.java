@@ -9,9 +9,17 @@ public abstract class Person extends AbstractModel {
 	private String secondName;
 	@Column(datatype = "setString", name = "last_name")
 	private String lastName;
+	@Column(datatype="setString", name="email")
+	private String email;
 	
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

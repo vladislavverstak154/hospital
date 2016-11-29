@@ -16,7 +16,7 @@
 			<groupId>com.vvs.training</groupId>
 			<artifactId>datamodel</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.vvs.training</groupId>
 			<artifactId>dao-api</artifactId>
@@ -71,10 +71,10 @@
 
 		<!--Libraries for test DBunit -->
 
-		<!-- <dependency> -->
-			<!-- <groupId>org.dbunit</groupId> -->
-			<!-- <artifactId>dbunit</artifactId> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -104,7 +104,7 @@
 
 		</dependency>
 
-		
+
 	</dependencies>
 
 </project>

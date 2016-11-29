@@ -13,6 +13,7 @@ public class Doctor extends Person {
 	private Date dateEndHoliday;
 	@Column(datatype = "setLong", name = "patient_amount")
 	private Long patientAmount;
+	
 
 	public Date getDateHire() {
 		return dateHire;
