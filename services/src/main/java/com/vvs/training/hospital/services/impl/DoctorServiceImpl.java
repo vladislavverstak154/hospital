@@ -23,7 +23,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public Doctor get(Long id) {
-		return doctorDao.get(id);
+		return doctorDao.getById(id);
 	}
 
 	@Override

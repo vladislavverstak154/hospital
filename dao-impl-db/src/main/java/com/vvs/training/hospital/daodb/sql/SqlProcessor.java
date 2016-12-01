@@ -4,10 +4,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.springframework.stereotype.Component;
+import java.util.TreeMap;
 
 import com.vvs.training.hospital.annotations.Column;
 
@@ -22,7 +22,7 @@ import com.vvs.training.hospital.annotations.Column;
  *            this parameter will be automatically determined by the
  *            constructor, depending on the entity, passed to the constructor
  */
-public class SqlProcessor{
+public class SqlProcessor {
 
 	/**
 	 * This parameter represents an entity, from which will be taken a class
@@ -31,7 +31,7 @@ public class SqlProcessor{
 	/**
 	 * This field represents a Map<ColumnName, Field> of some entity
 	 */
-	private Map<String, Field> nameField;
+	private Map<String, Field> nameField = new TreeMap();
 	/**
 	 * This is the set of columnNames, for getting the fields from Map<>
 	 * nameField
@@ -49,22 +49,19 @@ public class SqlProcessor{
 	 * @param entity
 	 *            the entity for which SQL queries should be created
 	 */
-	public SqlProcessor (Class clazz) {
+	public SqlProcessor(Class clazz) {
 		this.clazz = clazz;
 		this.getAnnotatedFields();
 		this.columnNames = this.nameField.keySet();
 	}
 
-	public <K> String getByFieldSql(String field, K value) {
+	public <K> String getByColumnSql(String column) {
 
-		String sql = null;
-
-		sql = new String("SELECT FROM " + clazz.getSimpleName() + " WHERE "
-				+ this.nameField.get(field).getAnnotation(Column.class).name() + " = :"
-				+ this.nameField.get(field).getName());
-		
-		return sql;
-
+		String sql = String.format("SELECT * FROM"
+				+ " %s WHERE %s = :%s",
+				this.clazz.getSimpleName(),this.nameField.get(column).getAnnotation(Column.class).name(),
+				this.nameField.get(column).getAnnotation(Column.class).name());
+				return sql;
 	}
 
 	/**
@@ -103,12 +100,17 @@ public class SqlProcessor{
 	 */
 	private void getAnnotatedFields() {
 		// Taking all fields including inherited from current entity class
-		ArrayList<Field> fields = getInheritedFields(this.clazz);
+		List<Field> fields = getInheritedFields(this.clazz);
 		for (Field field : fields) {
+			putInMap(field);
+		}
+	}
+
+	private void putInMap(Field field) {
+		if (field != null) {
 			if (field.isAnnotationPresent(Column.class)) {
 				this.nameField.put(field.getAnnotation(Column.class).name(), field);
 			}
-
 		}
 	}
 
@@ -116,9 +118,9 @@ public class SqlProcessor{
 	 * This method returns a list of all fields including inherited fields of an
 	 * entity and is used as help method to the getAnnotatedFields() method.
 	 */
-	private static ArrayList<Field> getInheritedFields(Class<?> clazz) {
+	private List<Field> getInheritedFields(Class<?> clazz) {
 		ArrayList<Field> fields = new ArrayList<Field>(1);
-		for (Class<?> c = clazz; c != null; c = c.getSuperclass()) {
+		for (Class<?> c = clazz; c != Object.class; c = c.getSuperclass()) {
 			fields.addAll(Arrays.asList(c.getDeclaredFields()));
 		}
 		return fields;

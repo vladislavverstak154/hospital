@@ -8,8 +8,9 @@ import com.vvs.training.hospital.datamodel.Doctor;
 @Repository
 public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao{
 	
+	@Override
 	public Doctor getByEmail(String email){
-		return getByField("email", email);
+		return getByField("users_email", email);
 	}
 	
 }

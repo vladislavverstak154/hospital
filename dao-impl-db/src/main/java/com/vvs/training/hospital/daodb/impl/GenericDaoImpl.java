@@ -9,6 +9,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -63,7 +64,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	 * @param id - the id of object in the database
 	 */
 	@Override
-	public T get(Long id) {
+	public T getById(Long id) {
 		String sql = String.format("SELECT * FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
 		return (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
@@ -75,7 +76,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	 */
 	@Override
 	public Long insert(T entity) throws ExistEntityInsertException {
-		//Cheks if the SimpleInsert was already compiled for this table
+		//Check if the SimpleInsert was already compiled for this table
 		if (!this.tableSet) {
 			this.insertEntity.withTableName(this.getClazz().getSimpleName()).usingGeneratedKeyColumns("id");
 			this.tableSet = true;
@@ -130,8 +131,9 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	@Override
 	 public <K> T getByField(String field, K value) {
 		SqlProcessor sqlPr=new SqlProcessor(this.getClazz());
-		String sql=sqlPr.getByFieldSql(field, value);
-		return (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
+		String sql=sqlPr.getByColumnSql(field);
+		SqlParameterSource namedParameters = new MapSqlParameterSource(field, value);
+		return (T) this.namedParameterJdbcTemplate.queryForObject(sql, namedParameters, new BeanPropertyRowMapper(this.getClazz()));
 		 
 	 }
 	 

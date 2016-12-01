@@ -6,7 +6,7 @@ import com.vvs.training.hospital.datamodel.AbstractModel;
 
 public interface IGenericDao<T extends AbstractModel> {
 	
-	T get(Long id);
+	T getById(Long id);
 
 	Long insert(T entity);
 

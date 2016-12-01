@@ -24,6 +24,8 @@
 
 	<context:property-placeholder
 		ignore-unresolvable="true" location="classpath:dbtest.properties" />
+	
+	<tx:annotation-driven />
 
 	<!-- Initialization for data source -->
 	<bean id="dataSource"
@@ -57,7 +59,7 @@
 		<constructor-arg ref="dataSource" />
 	</bean>
 
-	<tx:annotation-driven />
+	
 
 	
 

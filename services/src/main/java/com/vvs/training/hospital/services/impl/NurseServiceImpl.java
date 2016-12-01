@@ -21,7 +21,7 @@ public class NurseServiceImpl implements NurseService {
 
 	@Override
 	public Nurse get(Long id) {
-		return nurseDao.get(id);
+		return nurseDao.getById(id);
 	}
 
 	@Override
