@@ -101,7 +101,6 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoGetByIdTest.xls")
 	@Test
-	@Ignore
 	public void testGetByIdTest() {
 		// new ToXlsWriter(this.dataSource);
 		Doctor doctor = doctorDao.getById(1l);
@@ -134,17 +133,13 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoUpdateTest.xls")
 	@Test
-	@Rollback(false)
+	@Rollback(true)
 	public void updateTest() throws SQLException, Exception {
 		this.doctor2.setId(2l);
 		this.doctor2.setLastName("Ivanovich");
 		doctorDao.update(this.doctor2);
-		FileInputStream file = new FileInputStream(absPath+"/DoctorDaoUpdateTestExp.xls");
-		IDataSet expectedData = new XlsDataSet(file);
-		IDataSet actualData = databaseTester.getConnection().createDataSet();
-		String[] ignore = { "id","date_end_holiday","date_hire" };
-		Assertion.assertEqualsIgnoreCols(expectedData, actualData, "doctor", ignore);
 		try {
+			this.doctor.setId(1l);
 			this.doctor.setFirstName("Petya");
 			this.doctor.setLastName("Ivanovich");
 			doctorDao.update(doctor);

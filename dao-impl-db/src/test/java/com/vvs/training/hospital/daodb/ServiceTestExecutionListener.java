@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.dbunit.IDatabaseTester;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.operation.DatabaseOperation;
 import org.dbunit.util.fileloader.XlsDataFileLoader;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
@@ -82,6 +83,8 @@ public class ServiceTestExecutionListener implements TestExecutionListener {
 			 * cheks because the DBunit don't takes into account the bounds
 			 * among the tables when choose the order of inserting data
 			 */
+			databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+			databaseTester.setTearDownOperation(DatabaseOperation.DELETE_ALL);
 			databaseTester.setDataSet(dataSet);
 			//inserting data to the Database
 			databaseTester.onSetup();

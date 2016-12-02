@@ -1,12 +1,14 @@
 package com.vvs.training.hospital.daodb;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.inject.Inject;
+
+import org.dbunit.DBTestCase;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.database.DatabaseConnection;
@@ -17,7 +19,6 @@ import org.dbunit.dataset.FilteredDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.dataset.filter.ITableFilter;
-import org.dbunit.util.fileloader.XlsDataFileLoader;
 
 import com.vvs.training.hospital.daodb.util.SchemaNameAwareBasicDataSource;
 
@@ -28,19 +29,15 @@ import com.vvs.training.hospital.daodb.util.SchemaNameAwareBasicDataSource;
  * @author Владислав
  *
  */
-public class DataPreparator {
+public class DataPreparator extends DBTestCase  {
 
+	@Inject
 	private SchemaNameAwareBasicDataSource dataSource;
+	
+	@Inject
+	protected IDatabaseTester databaseTester;
 
-	private IDatabaseTester databaseTester;
-
-	private XlsDataFileLoader xlsDataFileLoader;
-
-	public DataPreparator(SchemaNameAwareBasicDataSource dataSource, IDatabaseTester databaseTester) {
-		this.dataSource = dataSource;
-		this.databaseTester = databaseTester;
-		this.xlsDataFileLoader = new XlsDataFileLoader();
-	}
+	private IDataSet beforeData;
 
 	/**
 	 * This method loads data to the database, from a specified xls file
@@ -48,11 +45,11 @@ public class DataPreparator {
 	 * @param path
 	 *            - the absolute path to the xls file (here may be some troubles
 	 *            on other computers)
-	 * @throws IOException 
-	 * @throws DataSetException 
+	 * @throws Exception 
 	 */
-	public void loadDataToDb(String path) throws DataSetException, IOException {
-		databaseTester.setDataSet(getDataSetFromXls(path));
+	public void loadDataToDb(String path) throws Exception {
+		this.beforeData=getDataSetFromXls(path);
+				
 	}
 	/**
 	 * This method returns an dataSet fromXlsFile;
@@ -97,5 +94,13 @@ public class DataPreparator {
 		FileOutputStream file = new FileOutputStream("fullDB.xls");
 		XlsDataSet.write(fullDataSet, file);
 	}
+
+	@Override
+	protected IDataSet getDataSet() throws Exception {
+		return this.beforeData;
+	}
+	
+	@Override
+	public void 
 	
 }
