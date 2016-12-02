@@ -12,11 +12,11 @@ public abstract class Person extends AbstractModel {
 	@Column(datatype = "setString", name = "users_email")
 	private String usersEmail;
 
-	public String getEmail() {
+	public String getUsersEmail() {
 		return usersEmail;
 	}
 
-	public void setEmail(String email) {
+	public void setUsersEmail(String email) {
 		this.usersEmail = email;
 	}
 

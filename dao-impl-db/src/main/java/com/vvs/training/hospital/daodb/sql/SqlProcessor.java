@@ -54,8 +54,15 @@ public class SqlProcessor {
 		this.getAnnotatedFields();
 		this.columnNames = this.nameField.keySet();
 	}
-
-	public <K> String getByColumnSql(String column) {
+	
+	/**
+	 * This method allows to generate sql for quering and entity 
+	 * from the data base
+	 * @param column -name in the database, the proper annotation should
+	 * be applied to entity DTO object
+	 * @return an String sql query
+	 */
+	public String getByColumnForNamedParamSql(String column) {
 
 		String sql = String.format("SELECT * FROM"
 				+ " %s WHERE %s = :%s",
@@ -63,6 +70,9 @@ public class SqlProcessor {
 				this.nameField.get(column).getAnnotation(Column.class).name());
 				return sql;
 	}
+	
+	
+	
 
 	/**
 	 * Returns an update SQL for all fields of entire entity which will be
@@ -125,5 +135,6 @@ public class SqlProcessor {
 		}
 		return fields;
 	}
+
 
 }

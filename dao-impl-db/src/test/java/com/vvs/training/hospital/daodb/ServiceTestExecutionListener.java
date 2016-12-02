@@ -17,15 +17,9 @@ import org.springframework.test.context.TestExecutionListener;
  *
  */
 public class ServiceTestExecutionListener implements TestExecutionListener {
-	/**
-	 * this variable is needed to refer to the database to switch off cheks of
-	 * foreign keys. The jdbcTemplate bean should be stored in XML spring
-	 * context for test
-	 */
 	
-	private JdbcTemplate jdbcTemplate;
 	/**
-	 * This is class of DBunit, it should be too stored in spring context XML
+	 * This is class of DBunit, it should be specified in spring context XML
 	 * file
 	 */
 	
@@ -74,7 +68,6 @@ public class ServiceTestExecutionListener implements TestExecutionListener {
 			 * class org.dbunit.DataSourceDatabaseTester
 			 */
 			this.databaseTester = (IDatabaseTester) testCtx.getApplicationContext().getBean("databaseTester");
-			this.jdbcTemplate=(JdbcTemplate)testCtx.getApplicationContext().getBean("jdbcTemplate");
 			/*
 			 * loading XlsDataFileLoader from testSpring context(where the
 			 * datasource was specified as constructor argument
@@ -89,13 +82,9 @@ public class ServiceTestExecutionListener implements TestExecutionListener {
 			 * cheks because the DBunit don't takes into account the bounds
 			 * among the tables when choose the order of inserting data
 			 */
-			//this.fkcheckOff(tableNames);
-			//loading data to the databaseTester from dataSet
 			databaseTester.setDataSet(dataSet);
 			//inserting data to the Database
 			databaseTester.onSetup();
-			/* Switching on the foreign key checks */
-			//this.fkchekToOn(tableNames);
 		}
 	}
 	

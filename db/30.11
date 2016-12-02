@@ -5,6 +5,7 @@ CREATE TABLE "patient" (
 	"last_name" character varying NOT NULL,
 	"date_of_birth" DATE NOT NULL,
 	"users_email" character varying,
+	UNIQUE(first_name,second_name,last_name,date_of_birth),
 	CONSTRAINT patient_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -21,6 +22,7 @@ CREATE TABLE "doctor" (
 	"date_end_holiday" DATE,
 	"patient_amount" bigint,
 	"users_email" character varying,
+	UNIQUE(first_name,second_name,last_name),
 	CONSTRAINT doctor_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -34,6 +36,7 @@ CREATE TABLE "nurse" (
 	"second_name" character varying NOT NULL,
 	"last_name" character varying NOT NULL,
 	"users_email" character varying NOT NULL,
+	UNIQUE(first_name,second_name,last_name),
 	CONSTRAINT nurse_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

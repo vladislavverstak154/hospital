@@ -1,6 +1,10 @@
 package com.vvs.training.hospital.daodb;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,6 +14,7 @@ import javax.inject.Inject;
 
 import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.junit.Assert;
@@ -19,7 +24,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -59,8 +63,7 @@ import com.vvs.training.hospital.datamodel.Doctor;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context-daodb_test.xml")
-@TestExecutionListeners({ ServiceTestExecutionListener.class })
-public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class DoctorDaoTestTwo {
 	/**
 	 * This bean is provided to make a copy of dataBase to excel;
 	 */
@@ -68,6 +71,8 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	private SchemaNameAwareBasicDataSource dataSource;
 	@Inject
 	private IDatabaseTester databaseTester;
+	
+	private DataPreparator dataPreparator;
 
 	@Inject
 	private IDoctorDao doctorDao;
@@ -76,11 +81,37 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	private Doctor doctor;
 	private Doctor doctor2;
 	
+	/**
+	 * This is the path to the folder where you store prepared
+	 * data in xls for this tests
+	 *
+	 */
+	private final String absPath="E:/EPAM/hospital/dao-impl-db/src/test/java/com/vvs/training/hospital/daodb/DoctorDao/DoctorDao";
 	
-	private final String absPath="E:/EPAM/hospital/dao-impl-db/src/test/java/com/vvs/training/hospital/daodb/DoctorDao";
+	/**
+	 * This method will write file PathToMe that will help 
+	 * to find proper path to your prepared data in xls, relativly this file.
+	 *  
+	 */
+	@Test
+	@Ignore
+	public void getPath() throws IOException{
+		File file=new File("Path.txt");
+		file.createNewFile();
+		BufferedWriter bw=new BufferedWriter(new FileWriter(file.getName()));
+		String content=new String(""+file.getAbsolutePath());
+		bw.write(content);
+		bw.close();
+		}
+	
+	
+	
 
 	@Before
 	public void prepareMethodData() {
+		
+		this.dataPreparator=new DataPreparator(this.dataSource,this.databaseTester);
+		
 		this.doctor = new Doctor();
 		this.doctor.setFirstName("Vladislav");
 		this.doctor.setSecondName("Verstak");
@@ -99,29 +130,26 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor2.setUsersEmail("petyaverstak@gmail.com");
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoGetByIdTest.xls")
+	
 	@Test
-	@Ignore
-	public void testGetByIdTest() {
-		// new ToXlsWriter(this.dataSource);
+	public void testGetByIdTest() throws DataSetException, IOException {
+		dataPreparator.loadDataToDb(absPath+"GetByIdTest.xls");
 		Doctor doctor = doctorDao.getById(1l);
 		Assert.assertNotNull(doctor);
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoGetByEmailTest.xls")
+	
 	@Test
-	@Ignore
 	public void testGetByEmailTest() throws Exception {
-		// new ToXlsWriter(this.dataSource);
+		dataPreparator.loadDataToDb(absPath+"GetByEmailTest.xls");
 		Doctor doctor = doctorDao.getByEmail("vladislavverstak@gmail.com");
 		Assert.assertNotNull(doctor);
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoInsertTest.xls")
+	
 	@Test
-	@Ignore
-	public void insertTest() {
-		// Checks if entity was inserted
+	public void insertTest() throws Exception {
+		dataPreparator.loadDataToDb(absPath+"InsertTest.xls");
 		Assert.assertNotNull(doctorDao.insert(this.doctor));
 		try{
 			doctorDao.insert(this.doctor);
@@ -132,17 +160,23 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoUpdateTest.xls")
+	
 	@Test
-	@Rollback(false)
 	public void updateTest() throws SQLException, Exception {
+		//loading data to the DataBase
+		dataPreparator.loadDataToDb(absPath+"UpdateTest.xls");
+		
 		this.doctor2.setId(2l);
 		this.doctor2.setLastName("Ivanovich");
 		doctorDao.update(this.doctor2);
-		FileInputStream file = new FileInputStream(absPath+"/DoctorDaoUpdateTestExp.xls");
-		IDataSet expectedData = new XlsDataSet(file);
-		IDataSet actualData = databaseTester.getConnection().createDataSet();
-		String[] ignore = { "id","date_end_holiday","date_hire" };
+		
+		
+		IDataSet actualData=dataPreparator.getDataSetFromDb();
+		IDataSet expectedData=dataPreparator.getDataSetFromXls(absPath+"UpdateTestExp.xls");
+		
+		//This fields will we ignored when data will be compared
+		String[] ignore = {"date_end_holiday","date_hire" };
+		
 		Assertion.assertEqualsIgnoreCols(expectedData, actualData, "doctor", ignore);
 		try {
 			this.doctor.setFirstName("Petya");
