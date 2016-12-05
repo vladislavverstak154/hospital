@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import com.vvs.training.hospital.daoapi.IDoctorDao;
@@ -32,9 +31,11 @@ public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao 
 
 	@Override
 	public List<Doctor> getByName(String firstName, String secondName) {
-		String sql = String.format("SELECT * FROM %s where first_name like %s and" + " second_name like %s",
+		String sql = String.format("SELECT * FROM %s where first_name like '%s' and" + " second_name like '%s'",
 				this.getClazz().getSimpleName(), firstName, secondName);
-		return (List<Doctor>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
+		List<Doctor> doctors = (List<Doctor>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
+		return doctors;
+		
 	}
 
 	@Override

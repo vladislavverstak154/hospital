@@ -84,7 +84,6 @@ public class ServiceTestExecutionListener implements TestExecutionListener {
 			 * among the tables when choose the order of inserting data
 			 */
 			databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-			databaseTester.setTearDownOperation(DatabaseOperation.DELETE_ALL);
 			databaseTester.setDataSet(dataSet);
 			//inserting data to the Database
 			databaseTester.onSetup();

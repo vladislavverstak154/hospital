@@ -6,13 +6,13 @@ import com.vvs.training.hospital.datamodel.AbstractModel;
 
 public interface IGenericDao<T extends AbstractModel> {
 	
-	T getById(Long id);
+	T getById(Long id) ;
 
 	Long insert(T entity);
 
-	void update(T entity) throws Exception;
+	int update(T entity);
 
-	void delete(Long id);
+	int deleteById(Long id);
 	
 	List<T> getAll();
 

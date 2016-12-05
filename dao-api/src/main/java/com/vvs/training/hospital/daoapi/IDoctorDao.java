@@ -10,7 +10,7 @@ public interface IDoctorDao extends IGenericDao<Doctor> {
 
 	Doctor getByEmail(String email);
 	
-	List<Doctor> getByName(String first_name,String last_name);
+	List<Doctor> getByName(String firstName,String lastName);
 
 	List<Doctor> getDoctorActive(Date date);
 	

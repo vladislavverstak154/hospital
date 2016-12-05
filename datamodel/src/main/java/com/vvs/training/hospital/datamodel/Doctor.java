@@ -1,43 +1,46 @@
 package com.vvs.training.hospital.datamodel;
 
-import java.util.Date;
-
 import com.vvs.training.hospital.annotations.Column;
 import com.vvs.training.hospital.annotations.Table;
 
 @Table(name="doctor")
 public class Doctor extends Person {
-	@Column(datatype = "setDate", name = "date_hire")
-	private Date dateHire;
-	@Column(datatype = "setDate", name = "date_end_holiday")
-	private Date dateEndHoliday;
+	
+	@Column(datatype="setBoolean", name="available")
+	private boolean available; 
 	@Column(datatype = "setLong", name = "patient_amount")
 	private Long patientAmount;
+	@Column(datatype="setString", name = "users_email")
+	private String usersEmail;
+	@Column(datatype="setLong", name="role_id")
+	private Long roleId;
 	
-
-	public Date getDateHire() {
-		return dateHire;
+	
+	public String getUsersEmail() {
+		return usersEmail;
 	}
-
+	public void setUsersEmail(String usersEmail) {
+		this.usersEmail = usersEmail;
+	}
+	public Long getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+	public boolean isAvailable() {
+		return available;
+	}
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
 	public Long getPatientAmount() {
 		return patientAmount;
 	}
-
 	public void setPatientAmount(Long patientAmount) {
 		this.patientAmount = patientAmount;
 	}
-
-	public void setDateHire(Date dateHire) {
-		this.dateHire = dateHire;
-	}
-
-	public Date getDateEndHoliday() {
-		return this.dateEndHoliday;
-	}
-
-	public void setDateEndHoliday(Date date) {
-		this.dateEndHoliday = date;
-	}
+	
 	
 	
 }

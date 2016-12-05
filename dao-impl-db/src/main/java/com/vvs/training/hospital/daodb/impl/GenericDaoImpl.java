@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.core.GenericTypeResolver;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -15,7 +14,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import com.vvs.training.hospital.daoapi.IGenericDao;
-import com.vvs.training.hospital.daodb.exception.ExistEntityInsertException;
 import com.vvs.training.hospital.daodb.sql.SqlProcessor;
 import com.vvs.training.hospital.datamodel.AbstractModel;
 
@@ -64,7 +62,8 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	@Override
 	public T getById(Long id) {
 		String sql = String.format("SELECT * FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
-		return (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
+		T entity = (T) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(this.getClazz()));
+		return entity;
 	}
 
 	/**
@@ -77,7 +76,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	 * @exception ExistEntityException
 	 */
 	@Override
-	public Long insert(T entity) throws ExistEntityInsertException {
+	public Long insert(T entity) {
 		// Check if the SimpleInsert was already compiled for this table
 		if (!this.tableSet) {
 			this.insertEntity = this.insertEntity.withTableName(this.getClazz().getSimpleName())
@@ -85,12 +84,9 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 			this.tableSet = true;
 		}
 		SqlParameterSource parameters = new BeanPropertySqlParameterSource(entity);
-		try {
-			Number newId = insertEntity.executeAndReturnKey(parameters);
-			return newId.longValue();
-		} catch (DuplicateKeyException e) {
-			throw new ExistEntityInsertException(entity.toString() + "is already exist");
-		}
+
+		Number newId = insertEntity.executeAndReturnKey(parameters);
+		return newId.longValue();
 
 	}
 
@@ -104,15 +100,12 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	 * @exception ExistEntityException
 	 */
 	@Override
-	public void update(T entity) throws ExistEntityInsertException {
+	public int update(T entity) {
 		SqlProcessor sqlPr = new SqlProcessor(this.getClazz());
 		String sql = sqlPr.updateSql(entity.getId());
-		try {
-			SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(entity);
-			this.namedParameterJdbcTemplate.update(sql, namedParameters);
-		} catch (DuplicateKeyException e) {
-			throw new ExistEntityInsertException(entity.toString() + "is already exist");
-		}
+
+		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(entity);
+		return this.namedParameterJdbcTemplate.update(sql, namedParameters);
 
 	}
 
@@ -123,9 +116,11 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	 *            - the id of entity to delete
 	 */
 	@Override
-	public void delete(Long id) {
+	public int deleteById(Long id) {
 		String sql = String.format("DELETE FROM %s WHERE id=%d", this.getClazz().getSimpleName(), id);
-		jdbcTemplate.execute(sql);
+		int rowAffected = jdbcTemplate.update(sql);
+		return rowAffected;
+
 	}
 
 	/**
@@ -134,7 +129,9 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	@Override
 	public List<T> getAll() {
 		String sql = "SELECT * FROM " + this.getClazz().getSimpleName();
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
+		List<T> entities = jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
+		return entities;
+
 	}
 
 	/**

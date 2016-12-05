@@ -1,30 +1,23 @@
 package com.vvs.training.hospital.daodb;
 
-import java.io.FileInputStream;
-import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.excel.XlsDataSet;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vvs.training.hospital.daoapi.IDoctorDao;
-import com.vvs.training.hospital.daodb.exception.ExistEntityInsertException;
 import com.vvs.training.hospital.daodb.util.SchemaNameAwareBasicDataSource;
 import com.vvs.training.hospital.datamodel.Doctor;
 
@@ -75,109 +68,134 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	private List<Long> ids = new ArrayList<>(1);
 	private Doctor doctor;
 	private Doctor doctor2;
-	
-	
-	private final String absPath="E:/EPAM/hospital/dao-impl-db/src/test/java/com/vvs/training/hospital/daodb/DoctorDao";
+	private Doctor doctor3;
+
+	private final String absPath = "E:/EPAM/hospital/dao-impl-db/src/test/java/com/vvs/training/hospital/daodb/DoctorDao";
 
 	@Before
-	public void prepareMethodData() {
+	public void prepareMethodData() throws Exception {
+		//new ToXlsWriter(this.dataSource);
+		Calendar calendar=Calendar.getInstance();
+		calendar.set(1992, Calendar.JULY, 21);
 		this.doctor = new Doctor();
 		this.doctor.setFirstName("Vladislav");
 		this.doctor.setSecondName("Verstak");
 		this.doctor.setLastName("Stanislavovich");
 		this.doctor.setUsersEmail("vladislavverstak@gmail.com");
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(2014, Calendar.AUGUST, 1);
-		this.doctor.setDateHire(calendar.getTime());
-		calendar.set(2016, Calendar.DECEMBER, 6);
-		this.doctor.setDateEndHoliday(calendar.getTime());
-
-		this.doctor2 = doctor;
+		this.doctor.setDateOfBirth(calendar.getTime());
+		this.doctor.setRoleId(2l);
+		this.doctor.setAvailable(true);
+		
+		this.doctor2 = new Doctor();
 		this.doctor2.setFirstName("Petya");
-		this.doctor2.setPatientAmount(10l);
+		this.doctor2.setSecondName("Verstak");
+		this.doctor2.setLastName("Stanislavovich");
 		this.doctor2.setUsersEmail("petyaverstak@gmail.com");
+		this.doctor2.setDateOfBirth(calendar.getTime());
+		this.doctor2.setRoleId(2l);
+		this.doctor2.setAvailable(true);
+		
+		this.doctor3 = new Doctor();
+		this.doctor3.setFirstName("Evgeniy");
+		this.doctor3.setSecondName("Verstak");
+		this.doctor3.setLastName("Stanislavovich");
+		this.doctor3.setUsersEmail("zhenyaverstak@gmail.com");
+		this.doctor3.setDateOfBirth(calendar.getTime());
+		this.doctor3.setRoleId(2l);
+		this.doctor3.setAvailable(true);
+		
+		
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoGetByIdTest.xls")
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void testGetByIdTest() {
-		// new ToXlsWriter(this.dataSource);
-		Doctor doctor = doctorDao.getById(1l);
-		Assert.assertNotNull(doctor);
-	}
+		Assert.assertNotNull(doctorDao.getById(1l));
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoGetByEmailTest.xls")
+	}
+	
+
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
-	@Ignore
 	public void testGetByEmailTest() throws Exception {
-		// new ToXlsWriter(this.dataSource);
 		Doctor doctor = doctorDao.getByEmail("vladislavverstak@gmail.com");
 		Assert.assertNotNull(doctor);
 	}
-
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoInsertTest.xls")
+	
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
-	@Ignore
+	
 	public void insertTest() {
-		// Checks if entity was inserted
+		
 		Assert.assertNotNull(doctorDao.insert(this.doctor));
-		try{
-			doctorDao.insert(this.doctor);
-			Assert.fail("Duplicate entity was inserted");
-		} catch (ExistEntityInsertException e){
-			Assert.assertTrue(true);
-		}
-		
-	}
-
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoUpdateTest.xls")
-	@Test
-	@Rollback(true)
-	public void updateTest() throws SQLException, Exception {
-		this.doctor2.setId(2l);
-		this.doctor2.setLastName("Ivanovich");
-		doctorDao.update(this.doctor2);
-		try {
-			this.doctor.setId(1l);
-			this.doctor.setFirstName("Petya");
-			this.doctor.setLastName("Ivanovich");
-			doctorDao.update(doctor);
-			Assert.fail("Exception has not been thrown duplicate entity has been inserted");
-		} catch (ExistEntityInsertException e) {
-			Assert.assertTrue(true);
-		}
-		
 	}
 	
-	/* File file = new File("/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoInsertTestExpect.xls");
-		IDataSet expectedData = new XlsDataSet(file);
-		IDataSet actualData = databaseTester.getConnection().createDataSet();
-		String[] ignore = { "id" };
-		Assertion.assertEqualsIgnoreCols(expectedData, actualData, "doctor", ignore); */
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@Test
+	public void updateTest() {
+		// Here we check if the entity was updated
+		this.doctor2.setId(2l);
+		this.doctor2.setLastName("Ivanovich");
+		Assert.assertEquals(1, doctorDao.update(this.doctor2));
+	}
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@Test
+	public void deleteByIdTest() {
+		Assert.assertEquals(1, doctorDao.deleteById(1l));
+	}
+	
+	
 
-	// @DataSets(setUpDataSet =
-	// "/com/vvs/training/hospital/daodb/DoctorDaoTest.xls")
-	// @Test
-   
-	// public void updateTest() throws Exception {
-	// Checks if entity was updated
-	// doctorDao.update(this.doctorForUpdate);
-	// ToXlsWriter.getDataSet(path);
-	// }
+	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@Test
+	public void getAllTest(){
+		Assert.assertEquals(2, doctorDao.getAll().size());
+	}
+	
 
-	/**
-	 * @Test рubliс void testSeleсt() throws Exсeрtion { // получаем ссылку на
-	 *       соединение с БД сonneсtion сon =
-	 *       tester.getсonneсtion().getсonneсtion(); // выполняем запрос на
-	 *       модификацию данных сon.сreateStatement().exeсuteUрdate("uрdate
-	 *       users set sex= 'f' where id_user = 1"); // проверяем, что состояние
-	 *       БД правильное // получаем из БД ее актуальное состояние IDataSet
-	 *       databaseDataSet = tester.getсonneсtion().сreateDataSet(); ITable
-	 *       aсtualTable = databaseDataSet.getTable("users"); // загружаем из
-	 *       внешнего xml-файла идеальное состояние IDataSet exрeсtedDataSet =
-	 *       new FlatXmlDataSet(new File("ideal.xml")); ITable exрeсtedTable =
-	 *       exрeсtedDataSet.getTable("users"); // сравниваем эти два состояния
-	 *       между собой Assertion.assertEquals(exрeсtedTable, aсtualTable); }
-	 */
+	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@Test
+	public void getByName(){
+		String firstName="Vladislav";
+		String secondName="Verstak";
+		Assert.assertEquals(1, doctorDao.getByName(firstName, secondName).size());
+	}
+	
+
 }
+
+/*
+ * File file = new File(
+ * "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoInsertTestExpect.xls" );
+ * IDataSet expectedData = new XlsDataSet(file); IDataSet actualData =
+ * databaseTester.getConnection().createDataSet(); String[] ignore = { "id" };
+ * Assertion.assertEqualsIgnoreCols(expectedData, actualData, "doctor", ignore);
+ */
+
+// @DataSets(setUpDataSet =
+// "/com/vvs/training/hospital/daodb/DoctorDaoTest.xls")
+// @Test
+
+// public void updateTest() throws Exception {
+// Checks if entity was updated
+// doctorDao.update(this.doctorForUpdate);
+// ToXlsWriter.getDataSet(path);
+// }
+
+/**
+ * @Test рubliс void testSeleсt() throws Exсeрtion { // получаем ссылку на
+ *       соединение с БД сonneсtion сon =
+ *       tester.getсonneсtion().getсonneсtion(); // выполняем запрос на
+ *       модификацию данных сon.сreateStatement().exeсuteUрdate("uрdate users
+ *       set sex= 'f' where id_user = 1"); // проверяем, что состояние БД
+ *       правильное // получаем из БД ее актуальное состояние IDataSet
+ *       databaseDataSet = tester.getсonneсtion().сreateDataSet(); ITable
+ *       aсtualTable = databaseDataSet.getTable("users"); // загружаем из
+ *       внешнего xml-файла идеальное состояние IDataSet exрeсtedDataSet = new
+ *       FlatXmlDataSet(new File("ideal.xml")); ITable exрeсtedTable =
+ *       exрeсtedDataSet.getTable("users"); // сравниваем эти два состояния
+ *       между собой Assertion.assertEquals(exрeсtedTable, aсtualTable); }
+ */

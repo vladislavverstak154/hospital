@@ -1,5 +1,8 @@
 package com.vvs.training.hospital.datamodel;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import com.vvs.training.hospital.annotations.Column;
 
 public abstract class Person extends AbstractModel {
@@ -11,9 +14,19 @@ public abstract class Person extends AbstractModel {
 	private String lastName;
 	@Column(datatype = "setString", name = "users_email")
 	private String usersEmail;
+	@Column(datatype="setTimestamp", name="date_of_birth")
+	private Date dateOfBirth;
 
 	public String getUsersEmail() {
 		return usersEmail;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public void setUsersEmail(String email) {
