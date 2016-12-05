@@ -152,16 +152,23 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void getAllTest(){
-		Assert.assertEquals(2, doctorDao.getAll().size());
+		Assert.assertEquals(4, doctorDao.getAll().size());
 	}
 	
 
 	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
-	public void getByName(){
+	public void getByNameTest(){
 		String firstName="Vladislav";
 		String secondName="Verstak";
 		Assert.assertEquals(1, doctorDao.getByName(firstName, secondName).size());
+	}
+	
+	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@Test
+	public void getActiveTest(){
+		Assert.assertEquals(1, doctorDao.getDoctorActive(3l).size());
+		Assert.assertEquals(1, doctorDao.getDoctorActive(2l).size());
 	}
 	
 

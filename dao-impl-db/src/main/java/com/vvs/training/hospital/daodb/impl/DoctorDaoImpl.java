@@ -1,15 +1,12 @@
 package com.vvs.training.hospital.daodb.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.vvs.training.hospital.daoapi.IDoctorDao;
@@ -31,19 +28,17 @@ public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao 
 
 	@Override
 	public List<Doctor> getByName(String firstName, String secondName) {
-		String sql = String.format("SELECT * FROM %s where first_name like '%s' and" + " second_name like '%s'",
+		String sql = String.format("SELECT * FROM %s where first_name = '%s' and second_name = '%s'",
 				this.getClazz().getSimpleName(), firstName, secondName);
 		List<Doctor> doctors = (List<Doctor>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
 		return doctors;
 		
 	}
-
+		
 	@Override
-	public List<Doctor> getDoctorActive(Date date) {
-		String sql = String.format("select * from %s where date_end_holiday > :date and date_of_hire > :date and",
-				this.getClazz().getSimpleName());
-		SqlParameterSource namedParameters = new MapSqlParameterSource("date", date);
-		return this.namedParameterJdbcTemplate.query(sql, namedParameters, new BeanPropertyRowMapper(this.getClazz()));
+	public List<Doctor> getDoctorActive(Long role_id) {
+		String sql = String.format("select * from %s where %s = %s and available = true",this.getClazz().getSimpleName(),"role_id",role_id);
+		return this.jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
 	}
 
 }
