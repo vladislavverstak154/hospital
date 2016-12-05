@@ -14,7 +14,7 @@ public interface IProcedureDao extends IGenericDao<Procedure> {
 	 * @param doctorId
 	 * @param fromDate 
 	 * @param tillDate
-	 * @return - List<Procedure> of all procedures performed by docotor with doctorId 
+	 * @return - List<Procedure> of all procedures performed by doctor with doctorId 
 	*/
 	List<Procedure> getAllDoctorProcedures(Long doctorId, Date fromDate, Date tillDate);
 	/**

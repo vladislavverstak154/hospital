@@ -10,7 +10,6 @@ import com.vvs.training.hospital.datamodel.Procedure;
 
 public interface IOperationDao extends IGenericDao<Operation>{
 	
-	
 	List<Operation> getCureOperations(Long cureId);
 	
 	/**
@@ -18,16 +17,14 @@ public interface IOperationDao extends IGenericDao<Operation>{
 	 * @param doctorId
 	 * @param fromDate 
 	 * @param tillDate
-	 * @return - List<CurType> of all operations performed by docotor with doctorId 
+	 * @return - List<Operation> of all operations performed by doctor with doctorId 
 	*/
 	List<Operation> getAllDoctorProcedures(Long doctorId, Date fromDate, Date tillDate);
 		
 	/**
-	 * Returns a List<CurType> that contains
+	 * Returns a List<Operation> that contains
 	 * all information about current operations to fulfill in hospital;
 	 * @return
 	 */
 	List<Operation> getActivePatientOperationPlace();
-	
-	
 }
