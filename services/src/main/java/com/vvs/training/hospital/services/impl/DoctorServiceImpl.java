@@ -18,7 +18,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Inject
 	private IDoctorDao doctorDao;
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DoctorServiceImpl.class.getName());
 
 	@Override
@@ -34,13 +34,19 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	@Transactional
 	public void save(Doctor doctor) throws Exception {
-		if (doctor.getId()==null) {
+
+		if (doctor.getId() == null && uniqCheck(doctor)) {
+
 			doctorDao.insert(doctor);
-			
-		} else {
-			doctorDao.update(doctor);
-			
+
 		}
+
+		else {
+			// update will be allowed if doctor
+			// has no procedures in his cures
+
+		}
+
 	}
 
 	@Transactional
@@ -56,7 +62,18 @@ public class DoctorServiceImpl implements DoctorService {
 	@Transactional
 	public void delete(Long id) {
 		doctorDao.deleteById(id);
-		LOGGER.info("Doctor deleted id={}",id);
+		LOGGER.info("Doctor deleted id={}", id);
+	}
+
+	private boolean uniqCheck(Doctor doctor) {
+		boolean isUnique = true;
+		if (doctorDao.getByEmail(doctor.getUsersEmail()) != null) {
+			isUnique = false;
+		}
+		
+		doctorDao.getByName(doctor.getFirstName(), doctor.getLastName());
+		
+		return isUnique;
 	}
 
 }

@@ -3,9 +3,12 @@ package com.vvs.training.hospital.daoapi;
 import java.util.List;
 
 import com.vvs.training.hospital.datamodel.Patient;
+import com.vvs.training.hospital.datamodel.PatientDrugPlace;
+import com.vvs.training.hospital.datamodel.PatientOperationPlace;
+import com.vvs.training.hospital.datamodel.PatientProcedurePlace;
 
 public interface IPatientDao extends IGenericDao<Patient> {
-
+	
 	List<Patient> getByName(String first_name, String second_name);
 	
 	/**
@@ -14,6 +17,12 @@ public interface IPatientDao extends IGenericDao<Patient> {
 	 * doctors that currently are in hospital
 	 * @return
 	 */
-	List<PatientCureDoctor> getPatientCureDoctor();
+
+	List<PatientDrugPlace> getActivePatientDrugPlace();
+
+	List<PatientOperationPlace> getActivePatientOperationPlace();
+
+	List<PatientProcedurePlace> getActivePatientProcedurePlace();
+
 	
 }

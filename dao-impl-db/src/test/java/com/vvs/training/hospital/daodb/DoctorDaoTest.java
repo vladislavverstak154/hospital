@@ -1,15 +1,15 @@
 package com.vvs.training.hospital.daodb;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.dbunit.IDatabaseTester;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -59,8 +59,6 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	 */
 	@Inject
 	private SchemaNameAwareBasicDataSource dataSource;
-	@Inject
-	private IDatabaseTester databaseTester;
 
 	@Inject
 	private IDoctorDao doctorDao;
@@ -70,12 +68,10 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	private Doctor doctor2;
 	private Doctor doctor3;
 
-	private final String absPath = "E:/EPAM/hospital/dao-impl-db/src/test/java/com/vvs/training/hospital/daodb/DoctorDao";
-
 	@Before
 	public void prepareMethodData() throws Exception {
 		//new ToXlsWriter(this.dataSource);
-		Calendar calendar=Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
 		calendar.set(1992, Calendar.JULY, 21);
 		this.doctor = new Doctor();
 		this.doctor.setFirstName("Vladislav");
@@ -85,7 +81,7 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor.setDateOfBirth(calendar.getTime());
 		this.doctor.setRoleId(2l);
 		this.doctor.setAvailable(true);
-		
+
 		this.doctor2 = new Doctor();
 		this.doctor2.setFirstName("Petya");
 		this.doctor2.setSecondName("Verstak");
@@ -94,7 +90,7 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor2.setDateOfBirth(calendar.getTime());
 		this.doctor2.setRoleId(2l);
 		this.doctor2.setAvailable(true);
-		
+
 		this.doctor3 = new Doctor();
 		this.doctor3.setFirstName("Evgeniy");
 		this.doctor3.setSecondName("Verstak");
@@ -103,8 +99,7 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor3.setDateOfBirth(calendar.getTime());
 		this.doctor3.setRoleId(2l);
 		this.doctor3.setAvailable(true);
-		
-		
+
 	}
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
@@ -113,25 +108,21 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		Assert.assertNotNull(doctorDao.getById(1l));
 
 	}
-	
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void testGetByEmailTest() throws Exception {
-		Doctor doctor = doctorDao.getByEmail("vladislavverstak@gmail.com");
-		Assert.assertNotNull(doctor);
+		Doctor doctorE = doctorDao.getByEmail("vladislavverstak@gmail.com");
+		Assert.assertNotNull(doctorE);
 	}
-	
-	
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoInsertTest.xls")
 	@Test
-	
 	public void insertTest() {
-		
+		Doctor doctor=this.doctor;
 		Assert.assertNotNull(doctorDao.insert(this.doctor));
 	}
-	
-	
+
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void updateTest() {
@@ -140,37 +131,45 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor2.setLastName("Ivanovich");
 		Assert.assertEquals(1, doctorDao.update(this.doctor2));
 	}
-	
+
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void deleteByIdTest() {
 		Assert.assertEquals(1, doctorDao.deleteById(1l));
 	}
-	
-	
 
-	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
-	public void getAllTest(){
-		Assert.assertEquals(4, doctorDao.getAll().size());
+	public void getAllTest() {
+		List<Doctor> doctors = doctorDao.getAll();
+		Assert.assertEquals(4, doctors.size());
 	}
-	
 
-	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
-	public void getByNameTest(){
-		String firstName="Vladislav";
-		String secondName="Verstak";
+	public void getByNameTest() {
+		String firstName = "Vladislav";
+		String secondName = "Verstak";
 		Assert.assertEquals(1, doctorDao.getByName(firstName, secondName).size());
 	}
-	
-	@DataSets(setUpDataSet="/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
+
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
-	public void getActiveTest(){
+	public void getActiveTest() {
 		Assert.assertEquals(1, doctorDao.getDoctorActive(3l).size());
 		Assert.assertEquals(1, doctorDao.getDoctorActive(2l).size());
 	}
 	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoCureTypeTest.xls")
+	@Test
+	public void getCureTypeTest(){
+		Calendar calendar=Calendar.getInstance();
+		calendar.set(2016,Calendar.DECEMBER,15);
+		Date fromDate=calendar.getTime();
+		calendar.set(2106, Calendar.DECEMBER, 24);
+		Date tillDate=calendar.getTime();
+		doctorDao.getAllDoctorDrugs(1l, fromDate, tillDate);
+	}
 
 }
 

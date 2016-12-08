@@ -7,17 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.vvs.training.hospital.datamodel.Doctor;
 
 public interface DoctorService {
-	 
-	@Transactional
-	    void saveAll(List<Doctor> doctors) throws Exception;
 
-	    void save(Doctor doctor) throws Exception;
-	    
-	    void delete(Long id);
+	void save(Doctor doctor) throws Exception;
 
-	    Doctor get(Long id);
+	void delete(Long id);
 
-		List<Doctor> getAll();
-		
-			
+	Doctor get(Long id);
+
+	List<Doctor> getAll();
+
 }

@@ -1,8 +1,12 @@
 package com.vvs.training.hospital.daoapi;
 
+import java.util.Date;
 import java.util.List;
 
 import com.vvs.training.hospital.datamodel.Doctor;
+import com.vvs.training.hospital.datamodel.Drug;
+import com.vvs.training.hospital.datamodel.Operation;
+import com.vvs.training.hospital.datamodel.Procedure;
 
 
 public interface IDoctorDao extends IGenericDao<Doctor> {
@@ -11,6 +15,12 @@ public interface IDoctorDao extends IGenericDao<Doctor> {
 	
 	List<Doctor> getByName(String firstName,String lastName);
 
-	List<Doctor> getDoctorActive(Long role_id);
+	List<Doctor> getDoctorActive(Long roleId);
+	
+	List<Drug> getAllDoctorDrugs(Long doctorId, Date fromDate, Date tillDate);
+	
+	List<Procedure> getAllDoctorProcedures(Long doctorId, Date fromDate, Date tillDate);
+	
+	List<Operation> getAllDoctorOperations(Long doctorId, Date fromDate, Date tillDate);
 	
 }

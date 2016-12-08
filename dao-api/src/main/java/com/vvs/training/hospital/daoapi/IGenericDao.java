@@ -18,4 +18,6 @@ public interface IGenericDao<T extends AbstractModel> {
 
 	<K> T getByColumn(String field, K value);
 	
+	<K> List<T> getListByColumn(String field, K value);
+	
 }

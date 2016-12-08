@@ -39,13 +39,13 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	}
 
 	@Inject
-	private JdbcTemplate jdbcTemplate;
+	protected JdbcTemplate jdbcTemplate;
 
 	@Inject
 	private SimpleJdbcInsert insertEntity;
 
 	@Inject
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	// This parameter is used in the insert method, to avoid a repeated
 	// compilation
@@ -147,6 +147,15 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 		String sql = sqlPr.getByColumnForNamedParamSql(field);
 		SqlParameterSource namedParameters = new MapSqlParameterSource(field, value);
 		return (T) this.namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
+				new BeanPropertyRowMapper(this.getClazz()));
+	}
+	
+	@Override
+	public <K> List<T> getListByColumn(String field, K value) {
+		SqlProcessor sqlPr = new SqlProcessor(this.getClazz());
+		String sql = sqlPr.getByColumnForNamedParamSql(field);
+		SqlParameterSource namedParameters = new MapSqlParameterSource(field, value);
+		return (List<T>) this.namedParameterJdbcTemplate.query(sql, namedParameters,
 				new BeanPropertyRowMapper(this.getClazz()));
 	}
 

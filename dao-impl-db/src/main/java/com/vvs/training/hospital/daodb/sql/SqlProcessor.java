@@ -41,6 +41,10 @@ public class SqlProcessor {
 	 * This is the id of entity
 	 */
 	private Long id;
+	
+	public SqlProcessor(){
+		
+	}
 
 	/**
 	 * This constructor creates new SqlCreator which will creates SQL queries
@@ -65,9 +69,8 @@ public class SqlProcessor {
 	public String getByColumnForNamedParamSql(String column) {
 
 		String sql = String.format("SELECT * FROM"
-				+ " %s WHERE %s = :%s",
-				this.clazz.getSimpleName(),this.nameField.get(column).getAnnotation(Column.class).name(),
-				this.nameField.get(column).getAnnotation(Column.class).name());
+				+ " %1$s WHERE %2$s = :%2$s",
+				this.clazz.getSimpleName(),this.nameField.get(column).getAnnotation(Column.class).name());
 				return sql;
 	}
 	
@@ -104,6 +107,8 @@ public class SqlProcessor {
 		return sql;
 	}
 
+	
+	
 	/*
 	 * This method select only annotated fields that are related to the database
 	 * and put them into map<columnName,fieldName>
