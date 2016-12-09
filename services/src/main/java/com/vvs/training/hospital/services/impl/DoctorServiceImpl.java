@@ -41,10 +41,10 @@ public class DoctorServiceImpl implements DoctorService {
 
 		}
 
-		else {
+		else(updateCheck(doctor)) {
 			
-			if(doctorDao.getById(doctor.getId()))
-			doctorDao.insert(doctor);
+			
+			doctorDao.update(doctor);
 
 		}
 
@@ -80,4 +80,7 @@ public class DoctorServiceImpl implements DoctorService {
 		return isUnique;
 	}
 
+	private boolean updateCheck(Doctor doctor){
+		Doctor
+	}
 }
