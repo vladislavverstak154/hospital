@@ -5,13 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.inject.Inject;
-
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.metadata.GenericTableMetaDataProvider;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +31,14 @@ public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao 
 				this.getClazz().getSimpleName(), firstName, secondName);
 		List<Doctor> doctors = (List<Doctor>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));
 		return doctors;
+	}
+	
+	@Override
+	public Doctor getByFSLBd(Doctor doctor){
+		String sql=String.format("SELECT * FROM %s where first_name = '%s' and second_name = '%s'",
+				"Doctor", ":firstName", ":secondName", ":lastName", ":dateOfBirth");
+		SqlParameterSource namedParameters=new BeanPropertySqlParameterSource(doctor);
+		return this.namedParameterJdbcTemplate.queryForObject(sql, namedParameters,new BeanPropertyRowMapper(Doctor.class));
 	}
 
 	@Override

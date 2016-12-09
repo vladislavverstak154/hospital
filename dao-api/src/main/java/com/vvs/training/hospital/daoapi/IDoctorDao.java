@@ -22,5 +22,7 @@ public interface IDoctorDao extends IGenericDao<Doctor> {
 	List<Procedure> getAllDoctorProcedures(Long doctorId, Date fromDate, Date tillDate);
 	
 	List<Operation> getAllDoctorOperations(Long doctorId, Date fromDate, Date tillDate);
+
+	Doctor getByFSLBd(Doctor doctor);
 	
 }

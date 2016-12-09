@@ -42,8 +42,9 @@ public class DoctorServiceImpl implements DoctorService {
 		}
 
 		else {
-			// update will be allowed if doctor
-			// has no procedures in his cures
+			
+			if(doctorDao.getById(doctor.getId()))
+			doctorDao.insert(doctor);
 
 		}
 
@@ -65,14 +66,17 @@ public class DoctorServiceImpl implements DoctorService {
 		LOGGER.info("Doctor deleted id={}", id);
 	}
 
+	/**
+	 * This method is help method. It helps to define if new doctor is unique
+	 * 
+	 * @param doctor
+	 * @return
+	 */
 	private boolean uniqCheck(Doctor doctor) {
 		boolean isUnique = true;
-		if (doctorDao.getByEmail(doctor.getUsersEmail()) != null) {
+		if (doctorDao.getByEmail(doctor.getUsersEmail()) != null || doctorDao.getByFSLBd(doctor) != null) {
 			isUnique = false;
 		}
-		
-		doctorDao.getByName(doctor.getFirstName(), doctor.getLastName());
-		
 		return isUnique;
 	}
 
