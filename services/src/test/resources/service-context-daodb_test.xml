@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	    http://www.springframework.org/schema/context 
@@ -12,17 +13,20 @@
 	    http://www.springframework.org/schema/jee
 	    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
 	    http://www.springframework.org/schema/task
-	    http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+	    http://www.springframework.org/schema/task/spring-task-3.0.xsd
+	    http://www.springframework.org/schema/jdbc
+		http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
 
 	<context:annotation-config />
+	
+	<context:component-scan base-package="com.vvs.training.hospital.daodb" />
+	<context:component-scan base-package="com.vvs.training.hospital.services" />
 
-	<context:component-scan base-package="com.vvs.training.hospital.daodb.impl" />
-	<context:component-scan base-package="com.vvs.training.hospital.services.impl" />
-
-		<context:property-placeholder
-		ignore-unresolvable="true" location="classpath:db.properties" />
-
-
+	<context:property-placeholder
+		ignore-unresolvable="true" location="classpath:dbtest.properties" />
+	
+	<tx:annotation-driven />
 
 	<!-- Initialization for data source -->
 	<bean id="dataSource"
@@ -39,18 +43,35 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg ref="dataSource" />
 	</bean>
-	
-	<bean id="NamedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+
+	<!-- In Memory Database for DAO layer testing -->
+
+	<!-- <jdbc:embedded-database id="dataSource" type="HSQL"> -->
+	<!--<jdbc:script location="classpath:create-dao_test_db.sql" /> -->
+	<!-- <jdbc:script location="classpath:insert-data_dao_test.sql" /> -->
+	<!-- </jdbc:embedded-database> -->
+
+	<bean id="namedParameterJdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg ref="dataSource" />
 	</bean>
-	
-	<bean id="SimpleJdbcInsert" class="org.springframework.jdbc.core.simple.SimpleJdbcInsert" scope="prototype">
+
+	<bean id="simpleJdbcInsert" class="org.springframework.jdbc.core.simple.SimpleJdbcInsert" scope="prototype">
 		<constructor-arg ref="dataSource" />
 	</bean>
-	
+
 	
 
-	<tx:annotation-driven />
+	
+
+	<!-- DB unit beans -->
+
+	<bean id="databaseTester" class="org.dbunit.DataSourceDatabaseTester">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<bean id="xlsDataFileLoader" class="org.dbunit.util.fileloader.XlsDataFileLoader">
+	</bean>
 	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

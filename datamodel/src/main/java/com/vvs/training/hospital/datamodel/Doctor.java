@@ -28,7 +28,7 @@ public class Doctor extends Person {
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
-	public boolean isAvailable() {
+	public boolean getAvailable() {
 		return available;
 	}
 	public void setAvailable(boolean available) {

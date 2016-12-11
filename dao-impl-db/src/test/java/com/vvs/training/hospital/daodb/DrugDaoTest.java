@@ -42,7 +42,7 @@ public class DrugDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 	
 	
 	
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DrugDao/DrugDaoTest.xls")
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/CureDao/CureDaoTest.xls")
 	@Test
 	public void getCureDrugsTest(){
 		List<Drug> drugsAll=this.drugDao.getAll();

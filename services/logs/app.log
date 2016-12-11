@@ -1,10 +1,12 @@
-08:32:17.743 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=300, first name=Vl second name=Ver third name=St
-08:34:29.490 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=301, first name=Vl second name=Ver third name=St
-08:35:36.816 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=302, first name=Vladislav second name=Verstak third name=Stanislavovich
-08:37:59.353 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=304, first name=Vladislav second name=Verstak third name=Stanislavovich
-08:41:22.247 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=306, first name=Vladislav second name=Verstak third name=Stanislavovich
-08:43:12.165 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=307, first name=Vladislav second name=Verstak third name=Stanislavovich
-08:44:40.033 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=308, first name=Vladislav second name=Verstak third name=Stanislavovich
-08:56:09.557 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=309, first name=Vladislav second name=Verstak third name=Stanislavovich
-08:56:42.895 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=310, first name=Vladislav second name=Verstak third name=Stanislavovich
-09:00:16.390 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Docotr created. id=311, first name=Vladislav second name=Verstak third name=Stanislavovich
+20:22:32.193 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 65 has been created
+20:22:32.221 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 17 has been created
+20:22:46.080 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 74 has been created
+20:22:46.091 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 18 has been created
+20:27:33.013 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 83 has been created
+20:27:33.024 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 19 has been created
+20:29:51.519 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 92 has been created
+20:29:51.533 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 20 has been created
+20:30:06.502 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 101 has been created
+20:30:06.515 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 21 has been created
+20:34:25.027 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 120 has been created
+20:34:25.039 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 22 has been created

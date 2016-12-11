@@ -2,8 +2,8 @@ package com.vvs.training.hospital.datamodel;
 
 import com.vvs.training.hospital.annotations.Column;
 import com.vvs.training.hospital.annotations.Table;
-@Table(name="user")
-public class User extends AbstractModel {
+@Table(name="users")
+public class Users extends AbstractModel {
 	
 	@Column(datatype = "setString", name = "email")
 	private String email;

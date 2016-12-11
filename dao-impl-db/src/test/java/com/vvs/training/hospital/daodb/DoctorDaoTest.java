@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -135,7 +134,7 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void deleteByIdTest() {
-		Assert.assertEquals(1, doctorDao.deleteById(1l));
+		Assert.assertEquals(1, doctorDao.deleteById(10l));
 	}
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
@@ -169,6 +168,14 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		calendar.set(2106, Calendar.DECEMBER, 24);
 		Date tillDate=calendar.getTime();
 		doctorDao.getAllDoctorDrugs(1l, fromDate, tillDate);
+	}
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/CureDao/CureDaoTest.xls")
+	@Test
+	public void isDeleteAllowedTest(){
+		
+		Assert.assertFalse(doctorDao.isDeleteAllowed(1l));
+		Assert.assertTrue(doctorDao.isDeleteAllowed(6l));
 	}
 
 }

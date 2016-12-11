@@ -23,6 +23,8 @@ public interface IDoctorDao extends IGenericDao<Doctor> {
 	
 	List<Operation> getAllDoctorOperations(Long doctorId, Date fromDate, Date tillDate);
 
-	Doctor getByFSLBd(Doctor doctor);
+	boolean isDeleteAllowed(Long doctorId);
+
+	boolean isUnique(Doctor doctor);
 	
 }

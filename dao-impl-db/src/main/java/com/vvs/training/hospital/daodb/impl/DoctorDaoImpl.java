@@ -33,12 +33,17 @@ public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao 
 		return doctors;
 	}
 	
+	/**
+	 * This method cheks if the doctor is unique,
+	 * and if his email isn't taken
+	 */
 	@Override
-	public Doctor getByFSLBd(Doctor doctor){
-		String sql=String.format("SELECT * FROM %s where first_name = '%s' and second_name = '%s'",
-				"Doctor", ":firstName", ":secondName", ":lastName", ":dateOfBirth");
+	public boolean isUnique(Doctor doctor){
+		String sql=String.format("SELECT exists (select %1$s from %2$s where first_name = '%3$s' and second_name = '%4$s'"
+				+ " and last_name='%5$s' and date_of_birth=%6$s) or EXISTS (select %7$s from %2$s where users_email=%7$s)",
+				"id",this.getClazz().getSimpleName(), ":firstName", ":secondName", ":lastName", ":dateOfBirth",":usersEmail");
 		SqlParameterSource namedParameters=new BeanPropertySqlParameterSource(doctor);
-		return this.namedParameterJdbcTemplate.queryForObject(sql, namedParameters,new BeanPropertyRowMapper(Doctor.class));
+		return !this.namedParameterJdbcTemplate.queryForObject(sql, namedParameters,Boolean.class);
 	}
 
 	@Override
@@ -80,5 +85,16 @@ public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao 
 		SqlParameterSource namedParameters = new MapSqlParameterSource(param);
 		return (T)this.namedParameterJdbcTemplate.query(sql, namedParameters, new BeanPropertyRowMapper(clazz));
 	}
+
+	@Override
+	public boolean isDeleteAllowed(Long doctorId) {
+		String sql=String.format("select EXISTS (select doctor_id from cure where doctor_id = 6) OR"
+				+ " EXISTS (select doctor_id from drug where doctor_id = %1$s) OR"
+				+ " EXISTS (select doctor_id from operation where doctor_id = %1$s)OR"
+				+ " EXISTS (select doctor_id from procedure where doctor_id = %1$s) AND "
+				+ "EXISTS (select id from doctor where id=%1$s)",doctorId);
+		return !jdbcTemplate.queryForObject(sql, Boolean.class);
+	}
+
 	
 }

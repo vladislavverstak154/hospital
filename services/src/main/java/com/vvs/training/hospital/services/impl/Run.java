@@ -2,7 +2,6 @@ package com.vvs.training.hospital.services.impl;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.vvs.training.hospital.services.DoctorService;
 import com.vvs.training.hospital.services.PatientService;
 
 public class Run {
@@ -15,7 +14,6 @@ public class Run {
 			System.out.println(beanName);
 		}
 
-		DoctorService doctor = new DoctorServiceImpl();
 
 		PatientService patient = new PatientServiceImpl();
 

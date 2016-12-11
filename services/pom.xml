@@ -16,9 +16,9 @@
 			<groupId>com.vvs.training</groupId>
 			<artifactId>dao-impl-db</artifactId>
 		</dependency>
-		
-		<!--Liblaries for test-->
-		
+
+		<!--Liblaries for test -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -32,7 +32,18 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 
-		
+		<!--Libraries for test DBunit -->
+
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+
 
 	</dependencies>
 

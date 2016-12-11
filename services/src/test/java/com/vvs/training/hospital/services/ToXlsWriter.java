@@ -1,4 +1,4 @@
-package com.vvs.training.hospital.daodb;
+package com.vvs.training.hospital.services;
 
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -14,6 +14,7 @@ import org.dbunit.dataset.FilteredDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.dataset.filter.ITableFilter;
+import org.dbunit.util.fileloader.XlsDataFileLoader;
 
 public class ToXlsWriter {
 

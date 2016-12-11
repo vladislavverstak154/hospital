@@ -8,12 +8,20 @@ import com.vvs.training.hospital.datamodel.Doctor;
 
 public interface DoctorService {
 
-	void save(Doctor doctor) throws Exception;
+	@Transactional
+	Long save(Doctor doctor);
 
+	@Transactional
 	void delete(Long id);
 
 	Doctor get(Long id);
 
 	List<Doctor> getAll();
+
+	@Transactional
+	int changeStatus(Doctor doctor);
+
+	@Transactional
+	int changeRole(Doctor doctor);
 
 }
