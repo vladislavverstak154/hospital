@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -76,7 +77,6 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor.setFirstName("Vladislav");
 		this.doctor.setSecondName("Verstak");
 		this.doctor.setLastName("Stanislavovich");
-		this.doctor.setUsersEmail("vladislavverstak@gmail.com");
 		this.doctor.setDateOfBirth(calendar.getTime());
 		this.doctor.setRoleId(2l);
 		this.doctor.setAvailable(true);
@@ -85,7 +85,6 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor2.setFirstName("Petya");
 		this.doctor2.setSecondName("Verstak");
 		this.doctor2.setLastName("Stanislavovich");
-		this.doctor2.setUsersEmail("petyaverstak@gmail.com");
 		this.doctor2.setDateOfBirth(calendar.getTime());
 		this.doctor2.setRoleId(2l);
 		this.doctor2.setAvailable(true);
@@ -94,7 +93,6 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		this.doctor3.setFirstName("Evgeniy");
 		this.doctor3.setSecondName("Verstak");
 		this.doctor3.setLastName("Stanislavovich");
-		this.doctor3.setUsersEmail("zhenyaverstak@gmail.com");
 		this.doctor3.setDateOfBirth(calendar.getTime());
 		this.doctor3.setRoleId(2l);
 		this.doctor3.setAvailable(true);
@@ -134,7 +132,7 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
 	@Test
 	public void deleteByIdTest() {
-		Assert.assertEquals(1, doctorDao.deleteById(10l));
+		Assert.assertEquals(1, doctorDao.deleteById(4l));
 	}
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/DoctorDaoTest.xls")
@@ -170,14 +168,13 @@ public class DoctorDaoTest extends AbstractTransactionalJUnit4SpringContextTests
 		doctorDao.getAllDoctorDrugs(1l, fromDate, tillDate);
 	}
 	
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/CureDao/CureDaoTest.xls")
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/DoctorDao/CureDaoTest.xls")
 	@Test
 	public void isDeleteAllowedTest(){
-		
 		Assert.assertFalse(doctorDao.isDeleteAllowed(1l));
 		Assert.assertTrue(doctorDao.isDeleteAllowed(6l));
 	}
-
+		
 }
 
 /*

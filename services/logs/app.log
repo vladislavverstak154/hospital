@@ -1,12 +1,5 @@
-20:22:32.193 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 65 has been created
-20:22:32.221 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 17 has been created
-20:22:46.080 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 74 has been created
-20:22:46.091 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 18 has been created
-20:27:33.013 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 83 has been created
-20:27:33.024 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 19 has been created
-20:29:51.519 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 92 has been created
-20:29:51.533 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 20 has been created
-20:30:06.502 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 101 has been created
-20:30:06.515 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 21 has been created
-20:34:25.027 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user zhenyaverstak@gmail.com id = 120 has been created
-20:34:25.039 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 22 has been created
+09:07:23.290 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+09:07:23.670 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+09:07:23.814 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 69 has been created
+09:07:23.815 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 69 has been created
+09:07:23.919 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 

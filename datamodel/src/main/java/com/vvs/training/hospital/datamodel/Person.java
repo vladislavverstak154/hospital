@@ -12,14 +12,9 @@ public abstract class Person extends AbstractModel {
 	private String secondName;
 	@Column(datatype = "setString", name = "last_name")
 	private String lastName;
-	@Column(datatype = "setString", name = "users_email")
-	private String usersEmail;
 	@Column(datatype="setTimestamp", name="date_of_birth")
 	private Date dateOfBirth;
 
-	public String getUsersEmail() {
-		return usersEmail;
-	}
 
 	public Date getDateOfBirth() {
 		return dateOfBirth;
@@ -29,9 +24,6 @@ public abstract class Person extends AbstractModel {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public void setUsersEmail(String email) {
-		this.usersEmail = email;
-	}
 
 	public String getFirstName() {
 		return firstName;

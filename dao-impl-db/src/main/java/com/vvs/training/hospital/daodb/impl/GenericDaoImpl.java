@@ -42,7 +42,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	protected JdbcTemplate jdbcTemplate;
 
 	@Inject
-	private SimpleJdbcInsert insertEntity;
+	protected SimpleJdbcInsert insertEntity;
 
 	@Inject
 	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -50,7 +50,7 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	// This parameter is used in the insert method, to avoid a repeated
 	// compilation
 	// of SimpleJdbcInsert in case of wich Exception by Spring will be thrown
-	private boolean tableSet = false;
+	protected boolean tableSet = false;
 
 	/**
 	 * This method returns entity from the database. You should specify an id

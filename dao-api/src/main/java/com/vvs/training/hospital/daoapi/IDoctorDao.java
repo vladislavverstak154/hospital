@@ -25,6 +25,6 @@ public interface IDoctorDao extends IGenericDao<Doctor> {
 
 	boolean isDeleteAllowed(Long doctorId);
 
-	boolean isUnique(Doctor doctor);
+	Boolean isUnique(Doctor doctor, String email);
 	
 }

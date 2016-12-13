@@ -9,7 +9,7 @@ import com.vvs.training.hospital.datamodel.PatientProcedurePlace;
 
 public interface IPatientDao extends IGenericDao<Patient> {
 	
-	List<Patient> getByName(String first_name, String second_name);
+	List<Patient> getByName(String firstName, String secondName);
 	
 	/**
 	 * This method returns a list of objects, that
@@ -23,6 +23,10 @@ public interface IPatientDao extends IGenericDao<Patient> {
 	List<PatientOperationPlace> getActivePatientOperationPlace();
 
 	List<PatientProcedurePlace> getActivePatientProcedurePlace();
+
+	Boolean isUnique(Patient patient);
+
+	boolean isDeleteAllowed(Long id);
 
 	
 }
