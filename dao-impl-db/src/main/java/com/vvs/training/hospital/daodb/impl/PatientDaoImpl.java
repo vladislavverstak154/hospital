@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.hssf.record.formula.functions.T;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.vvs.training.hospital.daoapi.IPatientDao;
@@ -55,12 +57,9 @@ public class PatientDaoImpl extends GenericDaoImpl<Patient> implements IPatientD
 	
 		String sql = String.format(
 				"SELECT exists (select %1$s from %2$s where first_name = %3$s and second_name = %4$s"
-						+ " and last_name=%5$s)",
-				"id", this.getClazz().getSimpleName(), ":firstName", ":secondName", ":lastName");
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("firstName", patient.getFirstName());
-		param.put("secondName", patient.getSecondName());
-		param.put("lastName", patient.getLastName());
+						+ " and last_name=%5$s and date_of_birth=%6$s)",
+				"id", this.getClazz().getSimpleName(), ":firstName", ":secondName", ":lastName",":dateOfBirth");
+		SqlParameterSource param=new BeanPropertySqlParameterSource(patient);
 		Boolean status = !this.namedParameterJdbcTemplate.queryForObject(sql, param, Boolean.class);
 		return status;
 	}
@@ -88,7 +87,7 @@ public class PatientDaoImpl extends GenericDaoImpl<Patient> implements IPatientD
 	@Override
 	public boolean isDeleteAllowed(Long patientId) {
 		String sql = String.format("select NOT EXISTS (select id from patient where id=%1$s) OR"
-				+ " EXISTS (select patient_id from cure where patient_id = %1%s and date_depart is null)",
+				+ " EXISTS (select patient_id from cure where patient_id = %1$s and date_depart is null)",
 				patientId);
 		return !jdbcTemplate.queryForObject(sql, Boolean.class);
 	}

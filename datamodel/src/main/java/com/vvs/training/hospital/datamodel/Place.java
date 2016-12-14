@@ -10,4 +10,12 @@ public class Place extends AbstractModel {
 	@Column(datatype = "setLong", name = "cure_id")
 	private Long cureId;
 
+	public Long getCureId() {
+		return cureId;
+	}
+
+	public void setCureId(Long cureId) {
+		this.cureId = cureId;
+	}
+
 }

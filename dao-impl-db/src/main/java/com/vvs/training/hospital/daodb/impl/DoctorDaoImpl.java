@@ -101,12 +101,18 @@ public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao 
 	@Override
 	public boolean isDeleteAllowed(Long doctorId) {
 		String sql = String.format("select NOT EXISTS (select id from doctor where id=%1$s) OR"
-				+ " EXISTS (select doctor_id from cure where doctor_id = %1%s) OR"
+				+ " EXISTS (select doctor_id from cure where doctor_id = %1$s) OR"
 				+ " EXISTS (select doctor_id from drug where doctor_id = %1$s) OR"
 				+ " EXISTS (select doctor_id from operation where doctor_id = %1$s)OR"
 				+ " EXISTS (select doctor_id from procedure where doctor_id = %1$s) AND "
 				+ "EXISTS (select id from doctor where id=%1$s)", doctorId);
 		return !jdbcTemplate.queryForObject(sql, Boolean.class);
+	}
+
+	@Override
+	public void incrPatientAmount(Long doctorId) {
+		String sql=String.format("update doctor set patient_amount=patient_amount+1 where id=%d",doctorId);
+		this.jdbcTemplate.execute(sql);
 	}
 
 }

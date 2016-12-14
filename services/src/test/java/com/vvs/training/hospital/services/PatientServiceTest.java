@@ -40,6 +40,7 @@ public class PatientServiceTest extends AbstractTransactionalJUnit4SpringContext
 	private Patient patient;
 	private Patient patient2;
 	private Patient patient3;
+	private Patient patient4;
 
 	@Before
 	public void prepareMetadata() throws Exception {
@@ -64,24 +65,45 @@ public class PatientServiceTest extends AbstractTransactionalJUnit4SpringContext
 		this.patient3.setLastName("Stanislavovich");
 		this.patient3.setDateOfBirth(calendar.getTime());
 
+		this.patient4 = new Patient();
+		this.patient4.setFirstName("Anatoliy");
+		this.patient4.setSecondName("Nadeiko");
+		this.patient4.setLastName("Alexandrovich");
+		this.patient4.setDateOfBirth(calendar.getTime());
+
 	}
-	
-	
+
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/PatientServTest/PatientServiceTest.xls")
 	@Test
 	public void getTest() {
 		Assert.assertNotNull(patientService.get(1l));
-		Assert.assertNull(patientService.get(6l));
+		Assert.assertNull(patientService.get(7l));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/PatientServTest/PatientServiceTest.xls")
+	@Test
+	public void saveTest() {
+		Assert.assertNotNull(patientService.save(patient3));
+		Assert.assertNull(patientService.save(patient3));
+	}
+
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/PatientServTest/PatientServiceTest.xls")
+	@Test
+	public void changeSecondNameTest() {
+		this.patient4.setId(1l);
+
+		this.patient4.setSecondName("Verstak");
+		Assert.assertEquals(1, patientService.changeSecondName(patient4));
+
+		this.patient4.setSecondName("Lovgach");
+		Assert.assertEquals(0, patientService.changeSecondName(patient4));
+	}
+
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/PatientServTest/PatientServiceTest.xls")
+	@Test
+	public void deleteTest() {
+		Assert.assertEquals(0,patientService.delete(4l));
+		Assert.assertEquals(1,patientService.delete(6l));
+	}
+
 }

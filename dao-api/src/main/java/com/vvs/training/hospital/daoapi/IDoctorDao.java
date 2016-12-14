@@ -26,5 +26,11 @@ public interface IDoctorDao extends IGenericDao<Doctor> {
 	boolean isDeleteAllowed(Long doctorId);
 
 	Boolean isUnique(Doctor doctor, String email);
+	/**
+	 * This method increases patientAmount of 
+	 * specified doctor byOne
+	 * @param doctorId
+	 */
+	void incrPatientAmount(Long doctorId);
 	
 }

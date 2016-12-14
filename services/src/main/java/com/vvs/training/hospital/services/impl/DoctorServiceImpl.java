@@ -97,7 +97,7 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public int changeStatus(Doctor doctor) {
 
-		Doctor doctorFromDb = doctorDao.getById(doctor.getId());
+		Doctor doctorFromDb = get(doctor.getId());
 		
 		if (doctorFromDb instanceof Doctor) {
 			
@@ -129,7 +129,7 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public int changeRole(Doctor doctor) {
 
-		Doctor doctorFromDb = doctorDao.getById(doctor.getId());
+		Doctor doctorFromDb = get(doctor.getId());
 		if (doctorFromDb instanceof Doctor) {
 			doctorFromDb.setRoleId(doctor.getRoleId());
 			int status = doctorDao.update(doctorFromDb);
@@ -262,6 +262,15 @@ public class DoctorServiceImpl implements DoctorService {
 
 		return doctorDao.isUnique(doctor, email);
 
+	}
+	
+	/**
+	 * This method returns all 
+	 * doctors that are active at current time
+	 */
+	@Override
+	public List<Doctor> getAllDoctorsActive() {
+		return doctorDao.getDoctorActive(2l);
 	}
 
 }

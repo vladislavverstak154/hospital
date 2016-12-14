@@ -16,6 +16,13 @@ public interface DoctorService {
 	int delete(Long id);
 
 	Doctor get(Long id);
+	
+	/**
+	 * Returns a list of all 
+	 * active doctors
+	 * @return
+	 */
+	List<Doctor> getAllDoctorsActive();
 
 	List<Doctor> getAll();
 

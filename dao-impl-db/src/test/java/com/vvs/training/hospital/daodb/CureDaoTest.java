@@ -34,7 +34,14 @@ public class CureDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/CureDao/CureDaoTest.xls")
 	@Test
 	public void testGetDoctorsActiveCureTest() {
-		Assert.assertEquals(1,cureDao.getDoctorsActiveCure(4l).size());
+		Assert.assertEquals(1,cureDao.getDoctorActiveCure(4l).size());
+	}
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/daodb/CureDao/CureDaoTest.xls")
+	@Test
+	public void addCureAllow() {
+		Assert.assertFalse(cureDao.addCureAllow(1l));
+		Assert.assertTrue(cureDao.addCureAllow(111l));
 	}
 	
 }

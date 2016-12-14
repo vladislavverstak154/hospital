@@ -71,7 +71,7 @@ public class PatientServiceImpl implements PatientService {
 
 				int status = patientDao.update(patientFromDB);
 				LOGGER.info(String.format("Patients secondName was changed from %s to %s id=%s", previousSecondName,
-						patientFromDB.getSecondName()));
+						patientFromDB.getSecondName(),patientFromDB.getId()));
 				return status;
 
 			} else {

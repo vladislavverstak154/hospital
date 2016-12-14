@@ -104,9 +104,10 @@ public class DoctorServiceTest extends AbstractTransactionalJUnit4SpringContextT
 	public void changeRoleTest() {
 		this.doctor.setId(1l);
 		this.doctor.setRoleId(3l);
+		doctorService.changeRole(doctor);
 		Assert.assertEquals(1, doctorService.changeRole(doctor));
 		this.doctor2.setRoleId(3l);
-		Assert.assertEquals(0, doctorService.changeStatus(doctor2));
+		Assert.assertEquals(0, doctorService.changeRole(doctor2));
 	}
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/DoctorServTest/DoctorServiceTest.xls")
