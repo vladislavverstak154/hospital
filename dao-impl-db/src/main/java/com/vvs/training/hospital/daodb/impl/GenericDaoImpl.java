@@ -103,7 +103,6 @@ public abstract class GenericDaoImpl<T extends AbstractModel> implements IGeneri
 	public int update(T entity) {
 		SqlProcessor sqlPr = new SqlProcessor(this.getClazz());
 		String sql = sqlPr.updateSql(entity.getId());
-		System.out.println(sql);
 		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(entity);
 		return this.namedParameterJdbcTemplate.update(sql, namedParameters);
 

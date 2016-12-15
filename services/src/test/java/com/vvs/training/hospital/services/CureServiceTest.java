@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -74,11 +75,14 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		Doctor doctor=doctorService.get(1l);
 		Long patientAmount1=doctor.getPatientAmount();
 			
-		Long cureId=cureService.save(cure);
+		Long cureId=cureService.save(cure, 6l);
+		Place place=cureService.getPlace(6l);
+		
 		Assert.assertNotNull(cureId);
 		
 		Long patientAmount2=doctorService.get(1l).getPatientAmount()-1;
-		Assert.assertEquals(patientAmount1,patientAmount2);	
+		Assert.assertEquals(patientAmount1,patientAmount2);
+		Assert.assertEquals(cureId, place.getCureId());
 	}
 	
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
@@ -93,9 +97,16 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		
 		Long patientAmount1=doctor.getPatientAmount();
 		
-		Place place=place.get
+		//Closing cure
+		Assert.assertEquals(1, cureService.closeCure(4l));
 		
-		cureService.closeCure(4l);
+		Doctor doctorAfter=doctorService.get(cure.getDoctorId());
+		
+		Long patientAmount2=doctorAfter.getPatientAmount()+1;
+		
+		Assert.assertEquals(patientAmount1, patientAmount2);
+		
+		Assert.assertNull(cureService.getPlace(cure.getId()).getCureId());
 		
 		
 	}
