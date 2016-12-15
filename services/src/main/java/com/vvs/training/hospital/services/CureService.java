@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vvs.training.hospital.datamodel.Cure;
+import com.vvs.training.hospital.datamodel.Place;
 
 public interface CureService {
 	
@@ -43,13 +44,11 @@ public interface CureService {
 	 * whith dateOfDepart and diagnosis equals null
 	 * Date of arrive will be set automatically as current date and time
 	 * Patient amount of a doctor should be increased by one
-	 * patient_id of place should be changed after cure 
-	 * has been created
 	 * @param cure
 	 */
 	 
 	@Transactional
-	Long save(Cure cure, Long placeId);
+	Long save(Cure cure);
 	
 	/**Before deleting the cure all procedures have to be 
 	 * closed
@@ -60,7 +59,7 @@ public interface CureService {
 	 * @param cure
 	 */
 	@Transactional
-	int closeCure(Cure cure);
+	int closeCure(Long cure);
 	
 	/**
 	 * This method is made for doctor
@@ -83,6 +82,25 @@ public interface CureService {
 
 	List<Cure> getAll();
 
+	/**
+	 * Returns place by Id of the place
+	 * @param placeId
+	 * @return
+	 */
+	Place getPlace(Long placeId);
+
+	/**
+	 * Returns place by cure_id of the place
+	 * @return
+	 */
+	
+	Place getPlaceByCure(Long cureId);
+
+	
+
+	
+
+	
 
 		
 }

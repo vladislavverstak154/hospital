@@ -22,14 +22,32 @@ public class CureServiceImpl implements CureService {
 
 	@Inject
 	private ICureDao cureDao;
-	
+
 	@Inject
 	private IDoctorDao doctorDao;
-	
+
 	@Inject
 	private IPlaceDao placeDao;
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(CureServiceImpl.class.getName());
+	
+	@Override
+	public Place getPlace(Long placeId){
+		try {
+			return placeDao.getById(placeId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	@Override
+	public Place getPlaceByCure(Long cureId){
+		try {
+			return placeDao.getByColumn("cure_id", cureId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 	@Override
 	public Cure get(Long id) {
@@ -39,6 +57,13 @@ public class CureServiceImpl implements CureService {
 			return null;
 		}
 	}
+	
+	@Deprecated
+	@Override
+	public List<Cure> getAll() {
+		return cureDao.getAll();
+	}
+
 
 	@Override
 	public List<Cure> getPatientCures(Long patientId) {
@@ -56,51 +81,73 @@ public class CureServiceImpl implements CureService {
 	}
 
 	@Override
-	public Long save(Cure cure, Long placeId) {
-		if(saveCureAllow(cure.getPatientId())){
+	public Long save(Cure cure) {
+		if (saveCureAllow(cure.getPatientId())) {
 			cure.setDateArrive(new Date());
-			doctorDao.incrPatientAmount(cure.getDoctorId());
-			Place place=placeDao.getById(placeId);
-			if(!(place.getCureId() instanceof Long)){
-				Long cureId=cureDao.insert(cure);
-				place.setCureId(cureId);
-				placeDao.update(place);
-				LOGGER.info(String.format("The cure id=%d, for patient with id="
-						+ "%d has been created the doctor_id=%d",cureId,cure.getPatientId(),cure.getDoctorId()));
-				return cureId;
-			}
-		return null;
+			doctorDao.incrPatientAmount(cure.getDoctorId(), 1l);
+			Long cureId = cureDao.insert(cure);
+			LOGGER.info(String.format("The cure id=%d, for patient with id=" + "%d has been created the doctor_id=%d",
+					cureId, cure.getPatientId(), cure.getDoctorId()));
+			return cureId;
 		}
 		return null;
 	}
-	
-	
-	private boolean saveCureAllow(Long patientId){
+
+	private boolean saveCureAllow(Long patientId) {
 		return cureDao.addCureAllow(patientId);
 	}
 
 	@Override
-	public int closeCure(Cure cure) {
-		// TODO Auto-generated method stub
+	public int closeCure(Long cureId) {
+		if (closeCureAllow(cureId)) {
+			Cure cure = cureDao.getById(cureId);
+			cure.setDateDepart(new Date());
+			cureDao.update(cure);
+			doctorDao.incrPatientAmount(cure.getDoctorId(), -1l);
+
+			// Make a free place
+			Place place = placeDao.getByColumn("cure_id", cure.getId());
+			place.setCureId(null);
+			placeService.update(place);
+			return 1;
+		}
 		return 0;
+	}
+
+	private boolean closeCureAllow(Long cureId) {
+		return cureDao.closeCureAllow(cureId);
 	}
 
 	@Override
 	public int setDiagnosis(Cure cure) {
-		// TODO Auto-generated method stub
+		Cure cureFromDb = get(cure.getId());
+		if (cureFromDb instanceof Cure) {
+			cureFromDb.setDiagnosis(cure.getDiagnosis());
+			cureDao.update(cureFromDb);
+		}
 		return 0;
 	}
 
 	@Override
-	public int delete(Long id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(Long cureId) {
+		
+		if(isDeleteAllowed(cureId)){
+			
+			Cure cure = get(cureId);
+			cureDao.deleteById(cureId);
+			doctorDao.incrPatientAmount(cure.getDoctorId(), -1l);
+			return 1;
+			
+		} else {
+			
+			return 0;
+			
+		}
 	}
 
-	@Override
-	public List<Cure> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	private boolean isDeleteAllowed(Long cureId) {
+		return cureDao.isDeleteAllowed(cureId);
 	}
 
+	
 }

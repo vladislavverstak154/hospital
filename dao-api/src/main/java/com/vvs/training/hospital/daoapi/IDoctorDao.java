@@ -30,7 +30,10 @@ public interface IDoctorDao extends IGenericDao<Doctor> {
 	 * This method increases patientAmount of 
 	 * specified doctor byOne
 	 * @param doctorId
+	 * @param increment the +increment of patients
 	 */
-	void incrPatientAmount(Long doctorId);
+	int incrPatientAmount(Long doctorId, Long increment);
+
+	
 	
 }

@@ -1,57 +1,17 @@
-11:24:36.420 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-11:24:36.770 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-11:24:36.913 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-11:24:36.913 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 70 has been created
-11:32:15.825 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-11:32:16.210 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-11:32:16.342 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-11:32:16.343 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 71 has been created
-11:33:47.263 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-11:33:47.609 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-11:33:47.745 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-11:33:47.745 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 72 has been created
-11:33:58.591 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-11:33:58.595 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-11:33:58.933 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-11:33:59.066 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-11:33:59.066 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 73 has been created
-11:36:46.760 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-11:36:46.764 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-11:36:47.110 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-11:36:47.241 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-11:36:47.241 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 74 has been created
-11:36:47.363 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-12:10:17.105 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:10:42.719 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:10:42.721 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Vladislav Verstak id=null has been created
-12:11:03.484 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:13:43.284 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:14:29.221 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:15:17.298 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:15:53.021 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:18:01.991 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:19:23.093 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:19:23.256 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Nadeiko to Verstak id=1
-12:22:41.189 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:22:41.353 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Nadeiko to Verstak id=1
-12:22:41.356 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Verstak to Lovgach id=1
-12:24:45.396 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:24:45.563 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Nadeiko to Verstak id=1
-12:24:45.567 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Verstak to Lovgach id=1
-12:25:47.127 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:25:47.300 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Nadeiko to Verstak id=1
-12:25:47.305 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Verstak to Lovgach id=1
-12:27:00.595 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:27:00.755 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Nadeiko to Verstak id=1
-12:32:50.739 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:32:50.899 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Nadeiko to Verstak id=1
-12:37:12.746 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New patient Evgeniy Verstak id=null has been created
-12:37:12.911 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Patients secondName was changed from Nadeiko to Verstak id=1
-12:38:04.068 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-12:38:04.071 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-12:38:04.427 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-12:38:04.565 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-12:38:04.566 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 75 has been created
-12:38:04.675 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-22:44:09.175 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=6, for patient with id=111 has been created the doctor_id=1
-22:44:34.473 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=7, for patient with id=111 has been created the doctor_id=1
+19:03:21.643 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=8, for patient with id=111 has been created the doctor_id=1
+19:16:57.304 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=9, for patient with id=111 has been created the doctor_id=1
+19:19:59.262 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=10, for patient with id=111 has been created the doctor_id=1
+19:27:39.562 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=6, for patient with id=111 has been created the doctor_id=1
+19:28:27.663 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=7, for patient with id=111 has been created the doctor_id=1
+19:30:58.825 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=8, for patient with id=111 has been created the doctor_id=1
+19:34:17.674 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=9, for patient with id=111 has been created the doctor_id=1
+21:02:21.577 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=10, for patient with id=111 has been created the doctor_id=1
+21:03:38.360 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=11, for patient with id=111 has been created the doctor_id=1
+21:04:30.801 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=12, for patient with id=111 has been created the doctor_id=1
+21:05:42.958 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=13, for patient with id=111 has been created the doctor_id=1
+21:10:02.825 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=14, for patient with id=111 has been created the doctor_id=1
+21:10:44.491 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=15, for patient with id=111 has been created the doctor_id=1
+21:11:20.524 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=16, for patient with id=111 has been created the doctor_id=1
+21:14:02.903 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=17, for patient with id=111 has been created the doctor_id=1
+21:14:25.482 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=18, for patient with id=111 has been created the doctor_id=1
+21:17:11.800 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=19, for patient with id=111 has been created the doctor_id=1

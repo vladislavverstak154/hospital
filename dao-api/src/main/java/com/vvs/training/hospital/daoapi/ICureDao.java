@@ -34,4 +34,18 @@ public interface ICureDao extends IGenericDao<Cure> {
 	 */
 	boolean addCureAllow(Long patientId);
 	
+	/**
+	 * Checks if the cure can be closed
+	 * @param cureId
+	 * @return
+	 */
+	boolean closeCureAllow(Long cureId);
+	
+	/**
+	 * Checks if the cure hasn't procedures or operations or drugs set
+	 * @param cureId
+	 * @return
+	 */
+	boolean isDeleteAllowed(Long cureId);
+	
 }

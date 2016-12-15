@@ -47,7 +47,7 @@ CREATE TABLE "operation" (
 	"id" serial NOT NULL,
 	"title" character varying NOT NULL,
 	"date_end" DATE,
-	"doctor_id" bigint NOT NULL,
+	"doctor_id" bigint,
 	"cure_id" bigint NOT NULL,
 	CONSTRAINT operation_pk PRIMARY KEY ("id")
 ) WITH (
@@ -60,7 +60,7 @@ CREATE TABLE "procedure" (
 	"id" serial NOT NULL,
 	"title" character varying NOT NULL,
 	"date_end" DATE,
-	"doctor_id" bigint NOT NULL,
+	"doctor_id" bigint,
 	"cure_id" bigint NOT NULL,
 	CONSTRAINT procedure_pk PRIMARY KEY ("id")
 ) WITH (
@@ -73,7 +73,7 @@ CREATE TABLE "drug" (
 	"id" serial NOT NULL,
 	"title" character varying NOT NULL,
 	"date_end" DATE,
-	"doctor_id" bigint NOT NULL,
+	"doctor_id" bigint,
 	"cure_id" bigint NOT NULL,
 	CONSTRAINT drug_pk PRIMARY KEY ("id")
 ) WITH (

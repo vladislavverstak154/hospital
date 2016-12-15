@@ -110,9 +110,9 @@ public class DoctorDaoImpl extends GenericDaoImpl<Doctor> implements IDoctorDao 
 	}
 
 	@Override
-	public void incrPatientAmount(Long doctorId) {
-		String sql=String.format("update doctor set patient_amount=patient_amount+1 where id=%d",doctorId);
-		this.jdbcTemplate.execute(sql);
+	public int incrPatientAmount(Long doctorId, Long increment) {
+		String sql=String.format("update doctor set patient_amount=patient_amount+%d where id=%d",increment,doctorId);
+		return this.jdbcTemplate.update(sql);
 	}
 
 }

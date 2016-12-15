@@ -37,6 +37,31 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 	@Inject
 	private PlaceService placeService;
 
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
+	@Test
+	public void getPatientCuresTest() {
+		
+		Assert.assertEquals(2,cureService.getPatientCures(3l).size());
+		
+	}
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
+	@Test
+	public void getDoctorCuresTest() {
+		
+		Assert.assertEquals(2,cureService.getDoctorCures(3l).size());
+		
+	}
+	
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
+	@Test
+	public void getDoctorActiveCureTest() {
+		
+		Assert.assertEquals(1,cureService.getAllDoctorActiveCures(3l).size());
+		
+	}
+	
 	
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
 	@Test
@@ -48,20 +73,31 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		
 		Doctor doctor=doctorService.get(1l);
 		Long patientAmount1=doctor.getPatientAmount();
-		
-		Place place=placeService.get(3l);
-		Long cureId=place.getCureId();
-		
-		cureId=cureService.save(cure, 3l);
+			
+		Long cureId=cureService.save(cure);
 		Assert.assertNotNull(cureId);
 		
 		Long patientAmount2=doctorService.get(1l).getPatientAmount()-1;
-		Assert.assertEquals(patientAmount1,patientAmount2);
+		Assert.assertEquals(patientAmount1,patientAmount2);	
+	}
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
+	@Test
+	public void closeCureTest() {
 		
-		Assert.assertEquals(placeService.get(3l).getCureId(), cureId);
+		Assert.assertEquals(0l,cureService.closeCure(999l));
+		
+		Cure cure=cureService.get(4l);
+		
+		Doctor doctor=doctorService.get(cure.getDoctorId());
+		
+		Long patientAmount1=doctor.getPatientAmount();
+		
+		Place place=place.get
+		
+		cureService.closeCure(4l);
 		
 		
 	}
-
 	
 }

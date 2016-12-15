@@ -43,7 +43,7 @@ public class Cure extends AbstractModel {
 		this.doctorId = doctorId;
 	}
 
-	private String getDiagnosis() {
+	public String getDiagnosis() {
 		return diagnosis;
 	}
 
