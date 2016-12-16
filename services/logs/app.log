@@ -65,3 +65,7 @@
 14:22:49.246 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=10, for patient with id=111 has been created the doctor_id=1
 14:23:41.389 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=11, for patient with id=111 has been created the doctor_id=1
 14:27:11.555 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=12, for patient with id=111 has been created the doctor_id=1
+19:03:57.616 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=27, for patient with id=111 has been created the doctor_id=1
+19:11:38.869 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=28, for patient with id=111 has been created the doctor_id=1
+19:12:32.819 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=29, for patient with id=111 has been created the doctor_id=1
+19:19:20.717 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=30, for patient with id=111 has been created the doctor_id=1
