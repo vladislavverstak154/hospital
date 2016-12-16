@@ -82,7 +82,7 @@ public class DoctorServiceTest extends AbstractTransactionalJUnit4SpringContextT
 		Assert.assertNotNull(doctorService.get(1l));
 	}
 
-	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/DoctorServTest/DoctorServiceTest.xls")
+	//@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/DoctorServTest/DoctorServiceTest.xls")
 	@Test
 	public void saveDoctorTest() {
 		Assert.assertEquals(2, doctorService.save(doctor3, doctor3Email).intValue());

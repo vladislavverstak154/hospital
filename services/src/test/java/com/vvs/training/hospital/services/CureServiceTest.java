@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,7 +49,7 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 	@Test
 	public void getDoctorCuresTest() {
 		
-		Assert.assertEquals(2,cureService.getDoctorCures(3l).size());
+		Assert.assertEquals(3,cureService.getDoctorCures(3l).size());
 		
 	}
 	
@@ -59,7 +58,7 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 	@Test
 	public void getDoctorActiveCureTest() {
 		
-		Assert.assertEquals(1,cureService.getAllDoctorActiveCures(3l).size());
+		Assert.assertEquals(2,cureService.getAllDoctorActiveCures(3l).size());
 		
 	}
 	
@@ -107,8 +106,27 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		Assert.assertEquals(patientAmount1, patientAmount2);
 		
 		Assert.assertNull(cureService.getPlace(cure.getId()).getCureId());
-		
-		
+				
+	}
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
+	@Test
+	public void setDiagnosisTest() {
+		Cure cure=new Cure();
+		cure.setId(1l);
+		cure.setDiagnosis("gripp");
+		Assert.assertEquals(1, cureService.setDiagnosis(cure));
+		cure.setId(1123l);
+		cure.setDiagnosis("gripp");	
+		Assert.assertEquals(0, cureService.setDiagnosis(cure));
+	}
+	
+	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/CureServTest/CureServiceTest.xls")
+	@Test
+	public void deleteTest() {
+		Assert.assertEquals(0,cureService.delete(1l));
+		Assert.assertEquals(0,cureService.delete(115l));
+		Assert.assertEquals(1, cureService.delete(7l));
 	}
 	
 }

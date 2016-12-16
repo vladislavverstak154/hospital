@@ -53,8 +53,8 @@ public class CureDaoImpl extends GenericDaoImpl<Cure> implements ICureDao {
 	@Override
 	public boolean isDeleteAllowed(Long cureId) {
 		String sql=String.format("select exists(select id from procedure where cure_id=%1$d) or"
-				+ "exists(select id from operation where cure_id=%1$d) or"
-				+ "exists(select id from drug where cure_id=%1$d)",cureId);
+				+ " exists(select id from operation where cure_id=%1$d) or"
+				+ " exists(select id from drug where cure_id=%1$d)",cureId);
 		return !this.jdbcTemplate.queryForObject(sql, Boolean.class);
 	}
 

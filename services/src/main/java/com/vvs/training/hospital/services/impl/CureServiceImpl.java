@@ -126,8 +126,9 @@ public class CureServiceImpl implements CureService {
 		if (cureFromDb instanceof Cure) {
 			cureFromDb.setDiagnosis(cure.getDiagnosis());
 			cureDao.update(cureFromDb);
-		}
-		return 0;
+			return 1;
+		} else{
+		return 0;}
 	}
 
 	@Override
