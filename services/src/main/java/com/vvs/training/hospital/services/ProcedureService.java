@@ -2,6 +2,8 @@ package com.vvs.training.hospital.services;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.vvs.training.hospital.datamodel.Procedure;
 
 /**
@@ -11,6 +13,8 @@ import com.vvs.training.hospital.datamodel.Procedure;
  *
  */
 public interface ProcedureService {
+	
+	Procedure get(Long procedureId);
 	
 	/**
 	 * This service is for doctor 
@@ -27,10 +31,12 @@ public interface ProcedureService {
 	 * @param procedure
 	 * @return
 	 */
+	@Transactional
 	Long save(Procedure procedure);
-
+	
+	@Transactional
 	int delete(Long procedureId);
 
-	Procedure get(Long procedureId);
+
 	
 }

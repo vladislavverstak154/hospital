@@ -21,7 +21,4 @@ public interface PatientService {
 	@Transactional
 	public int delete(Long patientId);
 	
-	
-	
-	
 }

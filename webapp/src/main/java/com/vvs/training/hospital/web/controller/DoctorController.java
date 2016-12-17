@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vvs.training.hospital.datamodel.Doctor;
 import com.vvs.training.hospital.services.DoctorServTest;
+import com.vvs.training.hospital.services.DoctorService;
 import com.vvs.training.hospital.web.model.DoctorModel;
 
 @RestController
