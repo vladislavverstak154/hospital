@@ -2,10 +2,13 @@ package com.vvs.training.hospital.services.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -34,13 +37,13 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public Doctor get(Long id) {
 		try {
-			
+
 			return doctorDao.getById(id);
-			
+
 		} catch (EmptyResultDataAccessException e) {
-			
+
 			return null;
-			
+
 		}
 
 	}
@@ -58,31 +61,49 @@ public class DoctorServiceImpl implements DoctorService {
 	// TODO Add autorization here
 	// TODO Add validation on controllers level
 	@Override
-	public Long save(Doctor doctor, String email) {
+	public Long save(Doctor doctor, String email, Object docAuth) {
 
-		if (uniqCheck(doctor, email)) {
+		Map<String, Long> docAuthMap = (Map<String, Long>) docAuth;
 
-			Long doctorId = doctorDao.insert(doctor);
+		Long authId = docAuthMap.get("authId");
+		Long roleId = docAuthMap.get("roleId");
 
-			// Creating new user
-			Users user = new Users();
+		if (roleId.equals(1l)) {
 
-			// Set the email and generating password for
-			// this user
-			user.setId(doctorId);
-			user.setEmail(email);
-			user.setPassword(RandomStringUtils.randomAscii(6));
-			// TODO add here new method which will launch a new Thread, that
-			// will send an email to the user
-			// TODO make a save of the password to the DB more interesting, like
-			// creating
-			// an encrypted password, to store it in the DB.
-			Long userId = usersDao.insert(user);
+			Validate.notNull(email, "Email must be specified", email);
+			Validate.notNull(doctor.getRoleId(), "Role id must be specified");
+			Validate.notNull(doctor.getFirstName(), "First name must be specified");
+			Validate.notNull(doctor.getSecondName(), "Second name must be specified");
+			Validate.notNull(doctor.getLastName(), "Last name must be specified");
+			Validate.notNull(doctor.getDateOfBirth(), "Date of Birth must be specified");
 
-			LOGGER.info(String.format("New user %s id = %s has been created", user.getEmail(), userId));
-			LOGGER.info(String.format("New doctor %s %s id = %s has been created", doctor.getFirstName(),
-					doctor.getSecondName(), doctorId));
-			return 2l;
+			if (uniqCheck(doctor, email)) {
+
+				Long doctorId = doctorDao.insert(doctor);
+
+				// Creating new user
+				Users user = new Users();
+
+				// Set the email and generating password for
+				// this user
+				user.setId(doctorId);
+				user.setEmail(email);
+				user.setPassword(RandomStringUtils.randomAscii(6));
+				// TODO add here new method which will launch a new Thread, that
+				// will send an email to the user
+				// TODO make a save of the password to the DB more interesting,
+				// like
+				// creating
+				// an encrypted password, to store it in the DB.
+				Long userId = usersDao.insert(user);
+
+				LOGGER.info(String.format("New user %s id = %s has been created", user.getEmail(), userId));
+				LOGGER.info(String.format("New doctor %s %s id = %s has been created", doctor.getFirstName(),
+						doctor.getSecondName(), doctorId));
+				return doctorId;
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -98,24 +119,24 @@ public class DoctorServiceImpl implements DoctorService {
 	public int changeStatus(Doctor doctor) {
 
 		Doctor doctorFromDb = get(doctor.getId());
-		
+
 		if (doctorFromDb instanceof Doctor) {
-			
+
 			doctorFromDb.setAvailable(doctor.getAvailable());
-			
+
 			int status = doctorDao.update(doctorFromDb);
-			
+
 			LOGGER.info(String.format(
 					"The status of the doctor with id=%s and names %s %s has been changed to available=%s",
 					doctorFromDb.getId(), doctorFromDb.getFirstName(), doctorFromDb.getSecondName(),
 					doctorFromDb.getAvailable()));
-			
+
 			return status;
-			
+
 		} else {
-			
+
 			return 0;
-			
+
 		}
 
 	}
@@ -263,10 +284,9 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorDao.isUnique(doctor, email);
 
 	}
-	
+
 	/**
-	 * This method returns all 
-	 * doctors that are active at current time
+	 * This method returns all doctors that are active at current time
 	 */
 	@Override
 	public List<Doctor> getAllDoctorsActive() {

@@ -33,7 +33,7 @@ public interface DoctorService {
 	int changeRole(Doctor doctor);
 	
 	@Transactional
-	Long save(Doctor doctor, String email);
+	Long save(Doctor doctor, String email, Object object);
 
 	List<Doctor> getByName(String firstName, String secondName);
 

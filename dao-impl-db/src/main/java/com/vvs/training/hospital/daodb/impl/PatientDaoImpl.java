@@ -1,10 +1,7 @@
 package com.vvs.training.hospital.daodb.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.poi.hssf.record.formula.functions.T;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -13,7 +10,6 @@ import com.vvs.training.hospital.daoapi.IPatientDao;
 import com.vvs.training.hospital.daodb.mapper.PatientDrugPlaceMapper;
 import com.vvs.training.hospital.daodb.mapper.PatientOperationPlaceMapper;
 import com.vvs.training.hospital.daodb.mapper.PatientProcedurePlaceMapper;
-import com.vvs.training.hospital.datamodel.Doctor;
 import com.vvs.training.hospital.datamodel.Patient;
 import com.vvs.training.hospital.datamodel.PatientDrugPlace;
 import com.vvs.training.hospital.datamodel.PatientOperationPlace;

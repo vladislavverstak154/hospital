@@ -1,9 +1,11 @@
 package com.vvs.training.hospital.web.model;
 
 public class DoctorModel {
-    private Long id;
+   
+	private Long id;
     private String firstName;
     private String lastName;
+    private String Email;
 
     public String getFirstName() {
         return firstName;
@@ -34,5 +36,15 @@ public class DoctorModel {
         return "DoctorModel [id=" + id + ", firstName=" + firstName
                 + ", lastName=" + lastName + "]";
     }
+
+    public void setEmail(String email) {
+		Email = email;
+	}
+
+    
+	public String getEmail() {
+		return Email;
+	}
+
 
 }

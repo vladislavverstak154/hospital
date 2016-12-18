@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -85,8 +87,12 @@ public class DoctorServiceTest extends AbstractTransactionalJUnit4SpringContextT
 	//@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/DoctorServTest/DoctorServiceTest.xls")
 	@Test
 	public void saveDoctorTest() {
-		Assert.assertEquals(2, doctorService.save(doctor3, doctor3Email).intValue());
-		Assert.assertNull(doctorService.save(doctor2, doctor2Email));
+		Map<String,Long> authInf=new TreeMap<String,Long>();
+		authInf.put("id", 2l);
+		authInf.put("roleId", 1l);
+		Assert.assertNotNull(doctorService.save(doctor3, doctor3Email,authInf));
+		authInf.put("roleId", 2l);
+		Assert.assertNull(doctorService.save(doctor2, doctor2Email,authInf));
 	}
 
 	@DataSets(setUpDataSet = "/com/vvs/training/hospital/services/DoctorServTest/DoctorServiceTest.xls")

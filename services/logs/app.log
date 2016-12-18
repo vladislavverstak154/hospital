@@ -1,71 +1,78 @@
-19:03:21.643 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=8, for patient with id=111 has been created the doctor_id=1
-19:16:57.304 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=9, for patient with id=111 has been created the doctor_id=1
-19:19:59.262 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=10, for patient with id=111 has been created the doctor_id=1
-19:27:39.562 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=6, for patient with id=111 has been created the doctor_id=1
-19:28:27.663 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=7, for patient with id=111 has been created the doctor_id=1
-19:30:58.825 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=8, for patient with id=111 has been created the doctor_id=1
-19:34:17.674 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=9, for patient with id=111 has been created the doctor_id=1
-21:02:21.577 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=10, for patient with id=111 has been created the doctor_id=1
-21:03:38.360 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=11, for patient with id=111 has been created the doctor_id=1
-21:04:30.801 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=12, for patient with id=111 has been created the doctor_id=1
-21:05:42.958 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=13, for patient with id=111 has been created the doctor_id=1
-21:10:02.825 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=14, for patient with id=111 has been created the doctor_id=1
-21:10:44.491 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=15, for patient with id=111 has been created the doctor_id=1
-21:11:20.524 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=16, for patient with id=111 has been created the doctor_id=1
-21:14:02.903 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=17, for patient with id=111 has been created the doctor_id=1
-21:14:25.482 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=18, for patient with id=111 has been created the doctor_id=1
-21:17:11.800 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=19, for patient with id=111 has been created the doctor_id=1
-22:55:07.805 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=20, for patient with id=111 has been created the doctor_id=1
-22:55:45.599 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=21, for patient with id=111 has been created the doctor_id=1
-22:56:48.292 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=22, for patient with id=111 has been created the doctor_id=1
-22:59:44.891 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=24, for patient with id=111 has been created the doctor_id=1
-23:00:50.281 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=25, for patient with id=111 has been created the doctor_id=1
-23:02:24.969 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=26, for patient with id=111 has been created the doctor_id=1
-13:02:20.013 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-13:02:20.016 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-13:02:20.359 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-13:02:20.617 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-13:03:31.898 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-13:03:31.901 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-13:03:32.243 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-13:03:32.442 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-14:06:08.104 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:08.107 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:08.408 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-14:06:08.592 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-14:06:16.030 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:16.033 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:16.381 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-14:06:16.570 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-14:06:24.020 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:24.023 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:24.325 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-14:06:24.508 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-14:06:32.107 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:32.109 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:32.434 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-14:06:32.486 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-14:06:32.486 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 6 has been created
-14:06:32.580 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-14:06:49.991 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:49.993 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:06:50.296 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-14:06:50.348 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-14:06:50.348 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 7 has been created
-14:06:50.424 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-14:13:41.802 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:13:41.805 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
-14:13:42.111 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
-14:13:42.163 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
-14:13:42.163 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 8 has been created
-14:13:42.240 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
-14:15:17.649 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=7, for patient with id=111 has been created the doctor_id=1
-14:16:42.313 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=8, for patient with id=111 has been created the doctor_id=1
-14:20:55.033 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=9, for patient with id=111 has been created the doctor_id=1
-14:22:49.246 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=10, for patient with id=111 has been created the doctor_id=1
-14:23:41.389 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=11, for patient with id=111 has been created the doctor_id=1
-14:27:11.555 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=12, for patient with id=111 has been created the doctor_id=1
-19:03:57.616 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=27, for patient with id=111 has been created the doctor_id=1
-19:11:38.869 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=28, for patient with id=111 has been created the doctor_id=1
-19:12:32.819 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=29, for patient with id=111 has been created the doctor_id=1
-19:19:20.717 [main] INFO  com.vvs.training.hospital.services.impl.CureServiceImpl - The cure id=30, for patient with id=111 has been created the doctor_id=1
+12:51:51.412 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+12:51:51.421 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+12:51:51.742 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+12:51:51.900 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+12:55:32.839 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+12:55:32.842 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+12:55:33.167 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+12:55:33.277 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+12:55:45.115 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+12:55:45.118 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+12:55:45.452 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+12:55:45.559 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+13:05:53.224 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+13:05:53.227 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+13:05:53.546 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+13:05:53.660 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+13:20:54.099 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+13:20:54.102 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+13:20:54.420 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+13:20:54.528 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:53:18.967 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:18.969 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:19.288 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:53:19.661 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:53:37.636 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:37.639 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:37.956 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:53:38.152 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:53:42.250 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:42.253 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:42.570 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:53:42.757 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:53:45.148 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:45.151 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:45.467 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:53:45.650 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:53:48.391 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:48.394 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:48.710 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:53:48.892 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:53:55.050 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:55.053 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:53:55.391 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:53:55.441 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
+18:53:55.441 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 6 has been created
+18:53:55.550 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:54:35.777 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:54:35.780 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:54:36.097 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:54:36.138 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
+18:54:36.139 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 7 has been created
+18:54:36.238 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:54:50.325 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:54:50.328 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:54:50.645 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:54:50.690 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
+18:54:50.690 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 8 has been created
+18:54:50.792 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:55:45.727 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:55:45.730 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:55:46.046 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:55:46.090 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
+18:55:46.090 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 9 has been created
+18:55:46.191 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:56:07.516 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:56:07.519 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:56:07.840 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:56:07.950 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:56:53.290 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:56:53.293 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:56:53.621 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:56:53.734 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
+18:58:16.736 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:58:16.739 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The role_id of the doctor with id=1 and names Vladislav Verstak has been changed to 3
+18:58:17.052 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - The status of the doctor with id=1 and names Vladislav Verstak has been changed to available=false
+18:58:17.094 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New user evgeniyverstak@gmail.com id = 1 has been created
+18:58:17.094 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - New doctor Evgeniy Verstak id = 10 has been created
+18:58:17.193 [main] INFO  com.vvs.training.hospital.services.impl.DoctorServiceImpl - Doctor deleted id=5, user deleted id=5 
