@@ -1,50 +1,45 @@
 package com.vvs.training.hospital.web.model;
 
-public class DoctorModel {
-   
-	private Long id;
-    private String firstName;
-    private String lastName;
-    private String Email;
+public class DoctorModel extends PersonModel {
 
-    public String getFirstName() {
-        return firstName;
-    }
+	private boolean available;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	private Long patientAmount;
 
-    public Long getId() {
-        return id;
-    }
+	private Long roleId;
+	
+	private String email;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Override
-    public String toString() {
-        return "DoctorModel [id=" + id + ", firstName=" + firstName
-                + ", lastName=" + lastName + "]";
-    }
-
-    public void setEmail(String email) {
-		Email = email;
+	public Long getRoleId() {
+		return roleId;
 	}
 
-    
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	public Long getPatientAmount() {
+		return patientAmount;
+	}
+
+	public void setPatientAmount(Long patientAmount) {
+		this.patientAmount = patientAmount;
+	}
+
 	public String getEmail() {
-		return Email;
+		return this.email;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }

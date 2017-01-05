@@ -6,5 +6,5 @@ import com.vvs.training.hospital.services.exceptions.AutorisationException;
 
 public interface AuthenticationService {
 
-    Map<String, Long> validateUserPassword(String username, String password) throws AutorisationException;
+    Map<String, Long> validateUserPassword(String username, String password);
 }

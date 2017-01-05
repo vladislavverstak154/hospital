@@ -14,7 +14,23 @@
 
 
 	<mvc:annotation-driven />
-	
-	<context:component-scan base-package="com.vvs.training.hospital.web.controller" />
+
+	<context:component-scan base-package="com.vvs.training.hospital.web" />
+
+	<bean id="conversionService"
+		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean
+					class="com.vvs.training.hospital.web.converter.Doctor2ModelConverter" />
+				<bean
+					class="com.vvs.training.hospital.web.converter.Model2DoctorConverter" />
+				<bean
+					class="com.vvs.training.hospital.web.converter.Model2PatientConverter" />
+				<bean
+					class="com.vvs.training.hospital.web.converter.Patient2ModelConverter" />
+			</set>
+		</property>
+	</bean>
 
 </beans>

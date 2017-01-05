@@ -25,23 +25,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	private IDoctorDao doctorDao;
 
 	@Override
-	public Map<String, Long> validateUserPassword(String email, String password) throws AutorisationException {
+	public Map<String, Long> validateUserPassword(String email, String password) {
+
 		Map<String, Long> docAuth = new TreeMap<String, Long>();
 		try {
 
 			Users users = usersDao.getByColumn("email", email);
-			
-			if(users.getPassword().equals(password)){
-			Doctor doctor = doctorDao.getById(users.getId());
 
-			docAuth.put("doctorId", doctor.getRoleId());
-			docAuth.put("roleId", doctor.getRoleId());
-			return docAuth;}else{
-				throw new AutorisationException("Wrong password or id");
+			if (users.getPassword().equals(password)) {
+				Doctor doctor = doctorDao.getById(users.getId());
+
+				docAuth.put("doctorId", doctor.getRoleId());
+				docAuth.put("roleId", doctor.getRoleId());
+				return docAuth;
+			} else {
+				return null;
 			}
 
-
-			
 		} catch (EmptyResultDataAccessException e) {
 			docAuth.put("doctorId", 0l);
 			docAuth.put("roleId", 0l);

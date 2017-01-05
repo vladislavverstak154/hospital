@@ -22,6 +22,7 @@ import com.vvs.training.hospital.datamodel.Operation;
 import com.vvs.training.hospital.datamodel.Procedure;
 import com.vvs.training.hospital.datamodel.Users;
 import com.vvs.training.hospital.services.DoctorService;
+import com.vvs.training.hospital.services.ISenderTLS;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -31,6 +32,9 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Inject
 	private IUsersDao usersDao;
+
+	@Inject
+	private ISenderTLS senderTLS;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DoctorServiceImpl.class.getName());
 
@@ -65,7 +69,6 @@ public class DoctorServiceImpl implements DoctorService {
 
 		Map<String, Long> docAuthMap = (Map<String, Long>) docAuth;
 
-		Long authId = docAuthMap.get("authId");
 		Long roleId = docAuthMap.get("roleId");
 
 		if (roleId.equals(1l)) {
@@ -88,9 +91,9 @@ public class DoctorServiceImpl implements DoctorService {
 				// this user
 				user.setId(doctorId);
 				user.setEmail(email);
-				user.setPassword(RandomStringUtils.randomAscii(6));
-				// TODO add here new method which will launch a new Thread, that
-				// will send an email to the user
+				user.setPassword(RandomStringUtils.randomAlphanumeric(8));
+				senderTLS.send("hospital", String.format("%s:%s", user.getEmail(), user.getPassword()),
+						"vladislavverstak@gmail.com", "vladverstak@yandex.ru");
 				// TODO make a save of the password to the DB more interesting,
 				// like
 				// creating
@@ -100,13 +103,11 @@ public class DoctorServiceImpl implements DoctorService {
 				LOGGER.info(String.format("New user %s id = %s has been created", user.getEmail(), userId));
 				LOGGER.info(String.format("New doctor %s %s id = %s has been created", doctor.getFirstName(),
 						doctor.getSecondName(), doctorId));
-				return doctorId;
-			} else {
-				return null;
+				return 1l;
 			}
-		} else {
-			return null;
+			return 2l;
 		}
+		return null;
 	}
 
 	/**
@@ -115,6 +116,7 @@ public class DoctorServiceImpl implements DoctorService {
 	 * doctor will not be shown in active doctors
 	 */
 	// TODO autorisation here
+
 	@Override
 	public int changeStatus(Doctor doctor) {
 
@@ -266,9 +268,7 @@ public class DoctorServiceImpl implements DoctorService {
 	 * @return
 	 */
 	private boolean isDeleteAllowed(Long id) {
-
 		return doctorDao.isDeleteAllowed(id);
-
 	}
 
 	/**
@@ -280,9 +280,7 @@ public class DoctorServiceImpl implements DoctorService {
 	 * @return
 	 */
 	private boolean uniqCheck(Doctor doctor, String email) {
-
 		return doctorDao.isUnique(doctor, email);
-
 	}
 
 	/**

@@ -48,7 +48,8 @@ public interface CureService {
 	 */
 	 
 	@Transactional
-	Long save(Cure cure, Long placeId);
+
+	Long save(Cure cure, Long placeId, Object docAuth);
 	
 	/**Before deleting the cure all procedures have to be 
 	 * closed
@@ -95,6 +96,7 @@ public interface CureService {
 	 */
 	
 	Place getPlaceByCure(Long cureId);
+
 	
 	
 

@@ -1,6 +1,7 @@
 package com.vvs.training.hospital.services.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,10 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.vvs.training.hospital.daoapi.IPatientDao;
-import com.vvs.training.hospital.datamodel.Doctor;
 import com.vvs.training.hospital.datamodel.Patient;
 import com.vvs.training.hospital.services.PatientService;
 
@@ -22,6 +21,11 @@ public class PatientServiceImpl implements PatientService {
 	private IPatientDao patientDao;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DoctorServiceImpl.class.getName());
+
+	@Override
+	public List<Patient> getAll() {
+		return patientDao.getAll();
+	}
 
 	@Override
 	public Patient get(Long patientId) {
@@ -39,22 +43,27 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public Long save(Patient patient) {
+	public Long save(Patient patient, Object docAuth) {
 
-		if (uniqCheck(patient)) {
+		Map<String, Long> docAuthMap = (Map<String, Long>) docAuth;
 
-			Long patietnId = patientDao.insert(patient);
+		Long authId = docAuthMap.get("authId");
+		Long roleId = docAuthMap.get("roleId");
 
-			LOGGER.info(String.format("New patient %s %s id=%d has been created", patient.getFirstName(),
-					patient.getSecondName(), patient.getId()));
+		if (roleId.equals(3l)) {
 
-			return patietnId;
+			if (uniqCheck(patient)) {
 
-		} else {
+				Long patietnId = patientDao.insert(patient);
 
-			return null;
+				LOGGER.info(String.format("New patient %s %s id=%d has been created", patient.getFirstName(),
+						patient.getSecondName(), patient.getId()));
 
+				return 1l;
+			}
+			return 2l;
 		}
+		return null;
 	}
 
 	@Override
@@ -71,7 +80,7 @@ public class PatientServiceImpl implements PatientService {
 
 				int status = patientDao.update(patientFromDB);
 				LOGGER.info(String.format("Patients secondName was changed from %s to %s id=%s", previousSecondName,
-						patientFromDB.getSecondName(),patientFromDB.getId()));
+						patientFromDB.getSecondName(), patientFromDB.getId()));
 				return status;
 
 			} else {

@@ -1,5 +1,7 @@
 package com.vvs.training.hospital.services.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,5 +25,9 @@ public class PlaceServiceImpl implements PlaceService {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<Place> getAll() {
+		return placeDao.getAll();}
 
 }

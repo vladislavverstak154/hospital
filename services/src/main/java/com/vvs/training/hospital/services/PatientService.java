@@ -8,17 +8,21 @@ import com.vvs.training.hospital.datamodel.Patient;
 
 public interface PatientService {
 	
+	public List<Patient> getAll();
+	
 	public Patient get(Long patientId);
 	
 	public List<Patient> getByName(String firstName, String secondName);
 	
 	@Transactional
-	public Long save(Patient patient);
+	Long save(Patient patient, Object docAuthMap);
 	
 	@Transactional
 	public int changeSecondName(Patient patient);
 	
 	@Transactional
 	public int delete(Long patientId);
+
+	
 	
 }

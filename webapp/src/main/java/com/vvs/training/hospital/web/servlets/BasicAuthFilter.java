@@ -37,7 +37,7 @@ public class BasicAuthFilter implements Filter {
         String[] credentials = resolveCredentials(req);
         boolean isCredentialsResolved = credentials != null && credentials.length == 2;
         if (!isCredentialsResolved) {
-            res.sendError(401);
+            res.sendError(401,"Wrong authorisaton parameters");
             return;
         }
         
@@ -50,21 +50,17 @@ public class BasicAuthFilter implements Filter {
         	request.setAttribute("docAuth", docAuth);  
             chain.doFilter(request, response);
         } else {
-            res.sendError(401);
+            res.sendError(401,"Wrong authorisaton parameters");
         }
 
     }
 
     private String[] resolveCredentials(org.eclipse.jetty.server.Request req) {
-        try {
             Enumeration<String> headers = req.getHeaders("Authorization");
             String nextElement = headers.nextElement();
             String base64Credentials = nextElement.substring("Basic".length()).trim();
             String credentials = new String(Base64.getDecoder().decode(base64Credentials), Charset.forName("UTF-8"));
-            return credentials.split(":", 2);
-        } catch (Exception e) {
-            return null;
-        }
+            return credentials.split(":", 2);    
     }
 
     @Override

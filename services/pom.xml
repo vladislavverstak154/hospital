@@ -33,17 +33,18 @@
 		</dependency>
 
 		<!--Libraries for test DBunit -->
-		<!--  
+		
 		<dependency>
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
 		</dependency>
-
+		
+		
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-		</dependency> -->
-		
+		</dependency>
+
 
 
 		<!-- Redis -->
@@ -52,7 +53,11 @@
 			<artifactId>jedis</artifactId>
 		</dependency>
 
-
+		<!-- Email sender -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
 
 	</dependencies>
 

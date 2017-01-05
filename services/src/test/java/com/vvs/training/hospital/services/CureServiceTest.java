@@ -1,6 +1,9 @@
 
 package com.vvs.training.hospital.services;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
@@ -71,10 +74,15 @@ public class CureServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		cure.setPatientId(111l);
 		cure.setDoctorId(1l);
 		
+		Map<String, Long> docAuthMap = new TreeMap<String,Long>();
+		docAuthMap.put("id",6l);
+		docAuthMap.put("id",4l);
+				
+		
 		Doctor doctor=doctorService.get(1l);
 		Long patientAmount1=doctor.getPatientAmount();
-			
-		Long cureId=cureService.save(cure, 6l);
+		
+		Long cureId=cureService.save(cure, 6l, 4l);
 		Place place=cureService.getPlace(6l);
 		
 		Assert.assertNotNull(cureId);

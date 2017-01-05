@@ -2,6 +2,7 @@ package com.vvs.training.hospital.daodb.impl;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -23,8 +24,10 @@ public class PatientDaoImpl extends GenericDaoImpl<Patient> implements IPatientD
 	}
 
 	@Override
-	public List<Patient> getByName(String first_name, String second_name) {
-		return null;
+	public List<Patient> getByName(String firstName, String secondName) {
+		String sql=String.format("select * from patient where first_name='%s' and second_name='%s'",
+				firstName,secondName);
+		return (List<Patient>) jdbcTemplate.query(sql, new BeanPropertyRowMapper(this.getClazz()));		
 	}
 
 	@Override

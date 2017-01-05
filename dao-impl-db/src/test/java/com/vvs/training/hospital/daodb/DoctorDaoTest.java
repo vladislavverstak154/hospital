@@ -39,7 +39,7 @@ import com.vvs.training.hospital.datamodel.Doctor;
  *                         rolled back. To control the rollback behavior, you
  *                         can use the @Rollback annotation at the method level.
  *                         All methods which are applied with the @DataSets
- *                         annotation has the test data file in Excel. In
+ *                         annotation set the test data file in Excel. In
  *                         addition, the doctorDao is autowired into the test
  *                         case from ApplicationContext. Within the method, to
  *                         ensure that no data exists in the CONTACT table, we

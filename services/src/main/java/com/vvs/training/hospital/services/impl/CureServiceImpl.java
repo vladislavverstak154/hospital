@@ -2,6 +2,7 @@ package com.vvs.training.hospital.services.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -49,8 +50,6 @@ public class CureServiceImpl implements CureService {
 		}
 	}
 
-	
-
 	@Override
 	public Cure get(Long id) {
 		try {
@@ -82,15 +81,23 @@ public class CureServiceImpl implements CureService {
 	}
 
 	@Override
-	public Long save(Cure cure, Long placeId) {
-		if (saveCureAllow(cure.getPatientId())) {
-			cure.setDateArrive(new Date());
-			doctorDao.incrPatientAmount(cure.getDoctorId(), 1l);
-			Long cureId = cureDao.insert(cure);
-			setPlaceCure(placeId, cureId);
-			LOGGER.info(String.format("The cure id=%d, for patient with id=" + "%d has been created the doctor_id=%d",
-					cureId, cure.getPatientId(), cure.getDoctorId()));
-			return cureId;
+	public Long save(Cure cure, Long placeId, Object docAuth) {
+		Map<String, Long> docAuthMap = (Map<String, Long>) docAuth;
+		Long authId = docAuthMap.get("authId");
+		Long roleId = docAuthMap.get("roleId");
+		
+		if (roleId.equals(4l)) {
+			if (saveCureAllow(cure.getPatientId())) {
+				cure.setDateArrive(new Date());
+				doctorDao.incrPatientAmount(cure.getDoctorId(), 1l);
+				Long cureId = cureDao.insert(cure);
+				setPlaceCure(placeId, cureId);
+				LOGGER.info(
+						String.format("The cure id=%d, for patient with id=" + "%d has been created the doctor_id=%d",
+								cureId, cure.getPatientId(), cure.getDoctorId()));
+				return 1l;
+			}
+			return 2l;
 		}
 		return null;
 	}
@@ -127,8 +134,9 @@ public class CureServiceImpl implements CureService {
 			cureFromDb.setDiagnosis(cure.getDiagnosis());
 			cureDao.update(cureFromDb);
 			return 1;
-		} else{
-		return 0;}
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -139,7 +147,7 @@ public class CureServiceImpl implements CureService {
 			Cure cure = get(cureId);
 			cureDao.deleteById(cureId);
 			doctorDao.incrPatientAmount(cure.getDoctorId(), -1l);
-			
+
 			return 1;
 
 		} else {
@@ -153,11 +161,9 @@ public class CureServiceImpl implements CureService {
 		return cureDao.isDeleteAllowed(cureId);
 	}
 
-
 	private int freePlace(Place place) {
 		return placeDao.update(place);
 	}
-	
 
 	private int setPlaceCure(Long placeId, Long cureId) {
 		Place place = getPlace(placeId);
@@ -170,5 +176,4 @@ public class CureServiceImpl implements CureService {
 		return 0;
 	}
 
-	
 }
