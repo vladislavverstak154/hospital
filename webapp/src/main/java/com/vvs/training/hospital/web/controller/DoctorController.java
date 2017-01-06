@@ -55,9 +55,9 @@ public class DoctorController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> createNewDoctor(@RequestBody DoctorModel doctorModel, HttpServletRequest request)
+	public ResponseEntity<Void> createNewDoctor(@RequestBody DoctorModel doctorModel)
 			throws ParseException {
-		Long code = service.save(converter.convert(doctorModel, Doctor.class), doctorModel.getEmail(), request.getAttribute("docAuth"));
+		Long code = service.save(converter.convert(doctorModel, Doctor.class), doctorModel.getEmail());
 		if (code.equals(1l)) {
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		} else if (code.equals(2l)) {

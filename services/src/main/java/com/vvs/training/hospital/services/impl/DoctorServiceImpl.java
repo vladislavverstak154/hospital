@@ -67,9 +67,7 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public Long save(Doctor doctor, String email) {
 
-		Map<String, Long> docAuthMap = (Map<String, Long>) docAuth;
 
-		Long roleId = docAuthMap.get("roleId");
 
 		
 

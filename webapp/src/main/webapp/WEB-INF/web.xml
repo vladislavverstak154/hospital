@@ -8,7 +8,9 @@
 
 	<context-param>
 	    <param-name>contextConfigLocation</param-name>
-	    <param-value>classpath:service-context.xml</param-value>
+	    <param-value>classpath:service-context.xml
+	    				security.xml
+	    </param-value>
 	</context-param>
 
 	<listener>
