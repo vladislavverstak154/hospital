@@ -33,7 +33,7 @@ public interface DoctorService {
 	int changeRole(Doctor doctor);
 	
 	@Transactional
-	Long save(Doctor doctor, String email, Object object);
+	Long save(Doctor doctor, String email);
 
 	List<Doctor> getByName(String firstName, String secondName);
 
@@ -42,5 +42,7 @@ public interface DoctorService {
 	List<Operation> getAllDoctorOperations(Long doctorId, Date fromDate, Date tillDate);
 
 	List<Procedure> getAllDoctorProcedures(Long doctorId, Date fromDate, Date tillDate);
+
+	
 
 }

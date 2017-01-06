@@ -65,13 +65,13 @@ public class DoctorServiceImpl implements DoctorService {
 	// TODO Add autorization here
 	// TODO Add validation on controllers level
 	@Override
-	public Long save(Doctor doctor, String email, Object docAuth) {
+	public Long save(Doctor doctor, String email) {
 
 		Map<String, Long> docAuthMap = (Map<String, Long>) docAuth;
 
 		Long roleId = docAuthMap.get("roleId");
 
-		if (roleId.equals(1l)) {
+		
 
 			Validate.notNull(email, "Email must be specified", email);
 			Validate.notNull(doctor.getRoleId(), "Role id must be specified");
@@ -106,8 +106,6 @@ public class DoctorServiceImpl implements DoctorService {
 				return 1l;
 			}
 			return 2l;
-		}
-		return null;
 	}
 
 	/**
