@@ -32,7 +32,7 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 
-		<!--Libraries for test DBunit -->
+		<!--Libraries for test DBunit 
 		
 		<dependency>
 			<groupId>org.dbunit</groupId>
@@ -44,7 +44,8 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 		</dependency>
-
+	 
+	 -->
 
 
 		<!-- Redis -->
